@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx7wx874ytign"]
+
+[ext_resource type="Script" uid="uid://nhw8rakcvkm3" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://c0hyrbjaf5mai" path="res://scenes/get_player_name.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://byxts1hu4do6t" path="res://scenes/speedrun.tscn" id="3_w8frs"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_2q6dc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.385558, 0.577629, 1, 1)
+
+[node name="Submit" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = 113.0
+offset_right = 101.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Submit"
+
+[node name="Back" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 461.0
+offset_top = 240.0
+offset_right = 551.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
+text = "Back"
+
+[node name="GetPlayerName" parent="Control" instance=ExtResource("2_w7c3h")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Speedrun" parent="Control" instance=ExtResource("3_w8frs")]
+
+[connection signal="pressed" from="Control/Submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]
