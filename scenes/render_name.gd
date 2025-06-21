@@ -11,13 +11,13 @@ var bitmap : BitMap = null
 func _ready() -> void:
 	var text = viewport.get_texture()
 	self.texture = text
-	RenderingServer.frame_post_draw.connect(printColor)
+	RenderingServer.frame_post_draw.connect(convert_string_to_rigidbody)
 	
 	
 var doOnce = false
 var polys
 
-func printColor():
+func convert_string_to_rigidbody():
 	if doOnce:
 		return
 	doOnce = true
@@ -25,11 +25,6 @@ func printColor():
 	var img = self.texture.get_image()
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(img, 0.0)
-	print("size " + str(bitmap.get_size()))
-	for i in size.x:
-		for j in size.y:
-			if img.get_pixel(i, j).a > 0:
-				print(str(i) + "," + str(j))
 	polys = bitmap.opaque_to_polygons(Rect2(Vector2(0, 0), bitmap.get_size()), 0)
 	for poly in polys:
 		var char_rigid = char_rigid_body.instantiate()

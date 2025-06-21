@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b3dju6ptl08w1"
-path="res://.godot/imported/emulogic.ttf-f7bf0accbe1711ba2c1426478ec6e37f.fontdata"
+path="res://.godot/imported/emulogic.ttf-cb5dafabf572b744fdf862973668cd25.fontdata"
 
 [deps]
 
-source_file="res://font/emulogic.ttf"
-dest_files=["res://.godot/imported/emulogic.ttf-f7bf0accbe1711ba2c1426478ec6e37f.fontdata"]
+source_file="res://fonts/emulogic.ttf"
+dest_files=["res://.godot/imported/emulogic.ttf-cb5dafabf572b744fdf862973668cd25.fontdata"]
 
 [params]
 
