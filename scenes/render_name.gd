@@ -28,6 +28,8 @@ func convert_string_to_rigidbody():
 	polys = bitmap.opaque_to_polygons(Rect2(Vector2(0, 0), bitmap.get_size()), 0)
 	for poly in polys:
 		var char_rigid = char_rigid_body.instantiate()
+		for i in poly.size():
+			poly[i] -= size/2.0
 		#char_rigid.find_child("CollisionPolygon2D")
 		char_rigid.get_child(0).polygon = poly
 		add_child(char_rigid)
