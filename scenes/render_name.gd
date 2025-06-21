@@ -1,5 +1,7 @@
 extends Sprite2D
+class_name GeneratedTextSprite
 
+@export var debug_draw = false
 @export var viewport : SubViewport = null
 
 var bodies = []
@@ -11,14 +13,18 @@ var bitmap : BitMap = null
 func _ready() -> void:
 	var text = viewport.get_texture()
 	self.texture = text
-	RenderingServer.frame_post_draw.connect(convert_string_to_rigidbody)
 	
 	
+var ready_to_generate = false
 var doOnce = false
 var polys
 
+func generate():
+	ready_to_generate = true
+	RenderingServer.frame_post_draw.connect(convert_string_to_rigidbody)
+	
 func convert_string_to_rigidbody():
-	if doOnce:
+	if doOnce or not ready_to_generate:
 		return
 	doOnce = true
 	var size = self.texture.get_size()
@@ -37,7 +43,7 @@ func convert_string_to_rigidbody():
 	queue_redraw()
 	
 func _draw():
-	if not doOnce: return
+	if not doOnce or not debug_draw: return
 	for body in bodies:
 		var poly = body.get_child(0).polygon
 		draw_colored_polygon(poly, Color.RED)
