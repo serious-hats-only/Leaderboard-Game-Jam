@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b46t7ni1nuceq"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
