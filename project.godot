@@ -15,6 +15,10 @@ run/main_scene="uid://c4ghdkqa6k2nq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://audio_bus.tres"
+
 [autoload]
 
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
