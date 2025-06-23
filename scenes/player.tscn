@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dibm2qkkhxgjm" path="res://sprites/gnome.png" id="2_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f16f4"]
-size = Vector2(104, 140)
+size = Vector2(57, 89)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -41,7 +41,6 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D" groups=["Player"]]
-motion_mode = 1
 script = ExtResource("1_bdmgi")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -51,7 +50,7 @@ region_rect = Rect2(0, 0, 128, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1, 21)
+position = Vector2(-2.5, 22.5)
 shape = SubResource("RectangleShape2D_f16f4")
 
 [node name="Camera2D" type="Camera2D" parent="."]

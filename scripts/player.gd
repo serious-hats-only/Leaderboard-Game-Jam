@@ -6,11 +6,14 @@ extends CharacterBody2D
 
 var speed = 100
 var acceleration = 500
-var friction = 1200
+var friction = 250
+var grounded = false
 
 @onready var collision_shape = %CollisionShape2D
 @onready var shape = collision_shape.shape
 
+@export var gravity = 10.0
+@export var jump_force = 250.0
 
 func _ready():
 	null
@@ -34,14 +37,20 @@ func move(delta):
 		apply_friction(friction * delta) #apply friction
 	else:
 		apply_movement(move_dir * acceleration * delta) #apply movement
+			
+	velocity.y += gravity; #apply gravity
+	
 	move_and_slide()
+	if Input.is_action_just_pressed("move_up") and is_on_floor():
+		velocity.y = -jump_force
 
 func apply_friction(amount):
-	if velocity.length() > amount:
-		velocity -= velocity.normalized() * amount
+	if abs(velocity.x) > amount:
+		velocity.x -= sign(velocity.x) * amount
 	else:
-		velocity = Vector2.ZERO
+		velocity.x = 0
 
 func apply_movement(accel):
-	velocity += accel
-	velocity = velocity.limit_length(speed)
+	velocity.x += accel.x
+	if abs(velocity.x) > speed: 
+		velocity.x = sign(velocity.x) * speed
