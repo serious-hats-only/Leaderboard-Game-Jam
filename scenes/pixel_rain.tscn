@@ -31,24 +31,3 @@ linear_accel_max = 51.52
 angle_min = 7.3
 angle_max = 14.5
 anim_speed_max = 112.48
-
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.329412)
-material = SubResource("CanvasItemMaterial_6bj0o")
-position = Vector2(1411, -61)
-amount = 10
-texture = ExtResource("1_8w6f3")
-lifetime = 12.19
-randomness = 0.28
-use_fixed_seed = true
-seed = 2778140552
-emission_shape = 3
-emission_rect_extents = Vector2(200, 200)
-direction = Vector2(100, 100)
-spread = 147.72
-linear_accel_min = 51.52
-linear_accel_max = 51.52
-angle_min = 7.3
-angle_max = 14.5
-anim_speed_max = 112.48
