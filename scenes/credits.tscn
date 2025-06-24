@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://bitmbgk1ydg72"]
+
+[ext_resource type="Script" uid="uid://byfka63qpyjvj" path="res://scripts/credits.gd" id="1_0bpdh"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bpdh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.650128, 0.650128, 0.650128, 1)
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -76.0
+offset_right = -33.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "BACK"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = -68.0
+offset_right = 138.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.667919, 0.0924657, 0, 1)
+bbcode_enabled = true
+text = "[u]Credits[/u]
+
+Design: TBD
+Code: TBD
+Art: TBD
+Audio: TBD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Back" to="." method="_on_button_pressed"]

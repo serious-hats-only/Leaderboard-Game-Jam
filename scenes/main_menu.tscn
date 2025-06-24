@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=7 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://cgorhdq2j2wib" path="res://sprites/title_placeholder.png" id="2_ekxnf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyabi"]
 font_size = 48
@@ -100,9 +101,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6cm7")
-metadata/_edit_vertical_guides_ = [123.0]
+metadata/_edit_vertical_guides_ = [0.0]
+metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="TitlePlaceholder" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_ekxnf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,14 +128,17 @@ offset_top = 47.0
 offset_right = 321.5
 offset_bottom = 114.0
 grow_horizontal = 2
-text = "Speedrun Leaderboard Test"
+text = "Placeholder Title"
 label_settings = SubResource("LabelSettings_qyabi")
+horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -165,3 +175,4 @@ libraries = {
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="Control/Credits" to="." method="_on_credits_pressed"]
