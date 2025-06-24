@@ -214,6 +214,7 @@ position = Vector2(-2.5, 22.5)
 shape = SubResource("RectangleShape2D_f16f4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -75)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

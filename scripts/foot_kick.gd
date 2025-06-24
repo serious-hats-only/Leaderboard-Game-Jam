@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 @export var rotation_speed : float = 2.0 # speed while pressing Q
 @export var snap_speed : float = 25.0 # speed of snapping back

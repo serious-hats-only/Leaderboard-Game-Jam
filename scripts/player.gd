@@ -10,6 +10,8 @@ var friction = 250
 var grounded = false
 var launched = false
 
+var kick_velocity = 3600
+
 @onready var collision_shape = %CollisionShape2D
 @onready var shape = collision_shape.shape
 
@@ -72,3 +74,7 @@ func apply_movement(accel):
 	velocity.x += accel.x
 	if abs(velocity.x) > speed: 
 		velocity.x = sign(velocity.x) * speed
+
+
+func _on_foot_body_entered(body: Node2D) -> void:
+	velocity.x = kick_velocity

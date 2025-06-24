@@ -4,17 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://db6bpv5dqnjaj" path="res://sprites/foot.png" id="1_xokgj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgi7n"]
-radius = 21.095
+radius = 5.0
 
-[node name="Foot" type="Node2D"]
+[node name="Foot" type="Area2D"]
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_fgi7n")
 
-[node name="Foot" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_xokgj")
 offset = Vector2(8, 86)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(44, 162)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(56, 161)
 shape = SubResource("CircleShape2D_fgi7n")
