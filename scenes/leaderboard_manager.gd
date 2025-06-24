@@ -10,7 +10,7 @@ func _ready() -> void:
 	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
 	for i in viewport_labels.size():
 		viewport_labels[i].text = player_list_with_pos[i]["player_name"]
-	for i in sprites.size():
+		sprites[i].text = viewport_labels[i].text.to_upper()
 		sprites[i].generate()
 
 func sort_by_score_ascending(a, b):
