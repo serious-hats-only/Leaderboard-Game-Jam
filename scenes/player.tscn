@@ -201,6 +201,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_bdmgi")
+speed = 200
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.10757e-12, 2.72761e-12)

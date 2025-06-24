@@ -13,7 +13,7 @@ var launched = false
 @onready var collision_shape = %CollisionShape2D
 @onready var shape = collision_shape.shape
 
-@export var gravity = 10.0
+@export var gravity = 20.0
 @export var jump_force = 250.0
 
 func _ready():
