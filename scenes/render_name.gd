@@ -4,6 +4,7 @@ class_name GeneratedTextSprite
 @export var debug_draw = false
 @export var viewport : SubViewport = null
 
+var text = ""
 var bodies = []
 var char_rigid_body = preload("res://prefabs/char_rigid_body.tscn")
 #@export var test_sprite : Sprite2D = null
@@ -36,14 +37,16 @@ func convert_string_to_rigidbody():
 		var char_rigid = char_rigid_body.instantiate()
 		for i in poly.size():
 			poly[i] -= size/2.0
-		#char_rigid.find_child("CollisionPolygon2D")
 		char_rigid.get_child(0).polygon = poly
+		char_rigid.add_to_group(text[bodies.size()]) #add it to a group corresponding to the letter
 		add_child(char_rigid)
 		bodies.append(char_rigid)
 	queue_redraw()
 	
 func _draw():
 	if not doOnce or not debug_draw: return
-	for body in bodies:
+	for i in range(bodies.size()):
+		var body = bodies[i]
 		var poly = body.get_child(0).polygon
-		draw_colored_polygon(poly, Color.RED)
+		var color = Color.BLACK
+		draw_colored_polygon(poly, color)
