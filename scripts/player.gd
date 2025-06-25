@@ -43,12 +43,18 @@ func move(delta):
 	
 	move_and_slide()
 	var just_launched = false
+	var cast = RayCast2D.new()
+	
+	
 	var collisions = get_slide_collision_count()
 	for i in range(collisions):
 		var c = get_slide_collision(i)
 		var groups = c.get_collider().get_groups()
 		for g in groups:
-			if g == 'B': #TODO add more and make this not specific to B
+			print(g)
+			if g == 'G':
+				print("G")
+			elif g == 'B': #TODO add more and make this not specific to B
 				velocity.y = -2*jump_force
 				launched = true
 				just_launched = true
@@ -72,3 +78,7 @@ func apply_movement(accel):
 	velocity.x += accel.x
 	if abs(velocity.x) > speed: 
 		velocity.x = sign(velocity.x) * speed
+
+func player_body_entered(other):
+	if other is Area2D:
+		print("entered " + other.get_groups()[0])
