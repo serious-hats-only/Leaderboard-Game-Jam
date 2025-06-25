@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=11 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://cgorhdq2j2wib" path="res://sprites/title_placeholder.png" id="2_ekxnf"]
+[ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="3_bqqt6"]
+[ext_resource type="Script" uid="uid://pmo5ovm36woj" path="res://scripts/main_menu_leaderboard.gd" id="3_wu84c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
 texture = ExtResource("2_ekxnf")
@@ -96,6 +98,14 @@ _data = {
 &"button_slide": SubResource("Animation_l6cm7")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.544974, 0.544974, 0.544974, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -108,6 +118,7 @@ metadata/_edit_vertical_guides_ = [0.0]
 metadata/_edit_horizontal_guides_ = [0.0]
 
 [node name="BGImage" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,15 +127,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
+[node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.268866, 0.703595, 0.552516, 1)
+color = Color(0.184314, 0.647059, 0.243137, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -179,6 +189,47 @@ text = "CREDITS"
 libraries = {
 &"": SubResource("AnimationLibrary_bqqt6")
 }
+
+[node name="MainMenuLeaderboard" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 168.0
+offset_top = -116.0
+offset_right = 451.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(142, 128)
+theme_override_styles/panel = SubResource("StyleBoxFlat_wu84c")
+script = ExtResource("3_wu84c")
+
+[node name="TempLeaderboard" type="RichTextLabel" parent="MainMenuLeaderboard"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_bqqt6")
+text = "1. AAA 2\"33'03
+2. BBB 2\"35'32
+3. CCC 2\"37'03
+4. DDD 2\"39'32
+5. EEE 2\"41'03
+6. FFF 2\"43'32
+7. GGG 2\"45'03
+8. HHH 2\"47'32
+9. III 2\"49'03
+10. JJJ 2\"51'32"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
