@@ -9,6 +9,7 @@ var acceleration = 500
 var friction = 250
 var grounded = false
 var launched = false
+var just_launched = false;
 
 var kick_velocity = 3600
 
@@ -24,6 +25,16 @@ func _ready():
 
 func _physics_process(delta):
 	move(delta)
+
+func handle_groups(groups):
+	for g in groups:
+		print(g)
+		if g == 'G':
+			print("G")
+		elif g == 'B': #TODO add more and make this not specific to B
+			velocity.y = -2*jump_force
+			launched = true
+			just_launched = true
 
 func move(delta):
 	# Visuals
@@ -44,22 +55,25 @@ func move(delta):
 	velocity.y += gravity; #apply gravity
 	
 	move_and_slide()
-	var just_launched = false
-	var cast = RayCast2D.new()
+	just_launched = false
 	
-	
+	#we also raycast as fallback when it doesn't detect
+	#the collider because of resolution ordering
+	#(i'm guessing that's why)
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(position, position + Vector2(0, 70))
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result:
+		var c = result["collider"]
+		var groups = c.get_groups()
+		handle_groups(groups)
+
 	var collisions = get_slide_collision_count()
 	for i in range(collisions):
 		var c = get_slide_collision(i)
 		var groups = c.get_collider().get_groups()
-		for g in groups:
-			print(g)
-			if g == 'G':
-				print("G")
-			elif g == 'B': #TODO add more and make this not specific to B
-				velocity.y = -2*jump_force
-				launched = true
-				just_launched = true
+		handle_groups(groups)
 
 	if not is_on_floor() and launched:
 		$AnimatedSprite2D.rotate((PI/2.0)*delta)
@@ -69,7 +83,8 @@ func move(delta):
 
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
 		velocity.y = -jump_force
-
+	
+	
 func apply_friction(amount):
 	if abs(velocity.x) > amount:
 		velocity.x -= sign(velocity.x) * amount
@@ -83,4 +98,6 @@ func apply_movement(accel):
 
 
 func _on_foot_body_entered(body: Node2D) -> void:
+	launched = true
+	velocity.y = -jump_force
 	velocity.x = kick_velocity

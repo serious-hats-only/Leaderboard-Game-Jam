@@ -222,3 +222,7 @@ scale = Vector2(1.6, 1.769)
 sprite_frames = SubResource("SpriteFrames_a3i40")
 animation = &"sink"
 frame_progress = 0.524265
+
+[node name="DebugLine2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 0, 70)
