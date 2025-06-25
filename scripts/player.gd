@@ -10,10 +10,12 @@ var friction = 250
 var grounded = false
 var launched = false
 
+var kick_velocity = 3600
+
 @onready var collision_shape = %CollisionShape2D
 @onready var shape = collision_shape.shape
 
-@export var gravity = 10.0
+@export var gravity = 20.0
 @export var jump_force = 250.0
 
 func _ready():
@@ -79,6 +81,6 @@ func apply_movement(accel):
 	if abs(velocity.x) > speed: 
 		velocity.x = sign(velocity.x) * speed
 
-func player_body_entered(other):
-	if other is Area2D:
-		print("entered " + other.get_groups()[0])
+
+func _on_foot_body_entered(body: Node2D) -> void:
+	velocity.x = kick_velocity
