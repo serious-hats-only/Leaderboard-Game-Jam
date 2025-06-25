@@ -2,6 +2,10 @@ extends Node2D
 
 var score = 0
 
+@export var complete_run: PackedScene
+
+var run_is_complete = false
+
 
 func _on_submit_pressed() -> void:
 	Global.display_speedrun_timer = false
@@ -11,3 +15,13 @@ func _on_submit_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if !run_is_complete:
+		var complete_run_instantiated = complete_run.instantiate()
+	
+		get_node("player").add_child(complete_run_instantiated)
+		complete_run_instantiated.global_position = Vector2(576.0, 324.0)
+		
+		run_is_complete = true
