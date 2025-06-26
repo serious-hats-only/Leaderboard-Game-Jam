@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://08gvqyw16aqo"]
+[gd_scene load_steps=33 format=3 uid="uid://08gvqyw16aqo"]
 
 [ext_resource type="Script" uid="uid://die87sw6agnes" path="res://scripts/player.gd" id="1_bdmgi"]
+[ext_resource type="AudioStream" uid="uid://dadsdlg5hmxtf" path="res://audio/sfx/GGA_BugBounce.mp3" id="2_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dibm2qkkhxgjm" path="res://sprites/gnome.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://b76fqaahoheqj" path="res://sprites/gnome_cannon.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://c8fbkd6dfn0fy" path="res://sprites/gnome_jump.png" id="4_dqkch"]
@@ -203,6 +204,11 @@ animations = [{
 script = ExtResource("1_bdmgi")
 speed = 200
 
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("2_fjrip")
+
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.10757e-12, 2.72761e-12)
 scale = Vector2(0.728565, 0.720638)
@@ -214,7 +220,7 @@ position = Vector2(-2.5, 22.5)
 shape = SubResource("RectangleShape2D_f16f4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -75)
+offset = Vector2(0, -106)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

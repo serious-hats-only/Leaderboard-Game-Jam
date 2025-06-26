@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://dde8joi25fpg2"]
+
+[ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="1_kdm6g"]
+
+[sub_resource type="Gradient" id="Gradient_kdm6g"]
+colors = PackedColorArray(1, 1, 1, 1, 0.0862745, 0.321569, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sta7v"]
+gradient = SubResource("Gradient_kdm6g")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sta7v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="LevelForViewport" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 1227.0
+offset_top = -863.0
+offset_right = 2980.0
+offset_bottom = 354.0
+rotation = 1.5708
+texture = SubResource("GradientTexture2D_sta7v")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -741.0
+offset_right = 1139.0
+offset_bottom = 629.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sta7v")
+
+[node name="TempLeaderboard" type="RichTextLabel" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 61.0
+offset_right = 36.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 16
+theme_override_constants/line_separation = 40
+theme_override_fonts/normal_font = ExtResource("1_kdm6g")
+theme_override_font_sizes/normal_font_size = 75
+text = "1. AAA 2\"33'03
+2. BBB 2\"35'32
+3. CCC 2\"37'03
+4. DDD 2\"39'32
+5. EEE 2\"41'03
+6. FFF 2\"43'32
+7. GGG 2\"45'03
+8. HHH 2\"47'32
+9. III 2\"49'03
+10. JJJ 2\"51'32"
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(564, -24)
+zoom = Vector2(0.2, 0.2)

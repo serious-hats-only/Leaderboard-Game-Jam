@@ -19,6 +19,12 @@ var kick_velocity = 3600
 @export var gravity = 20.0
 @export var jump_force = 250.0
 
+# audio references
+@onready var bounce: AudioStreamPlayer2D = $Audio/Bounce
+
+
+
+
 func _ready():
 	null
 #	Globals.player = self
@@ -32,6 +38,7 @@ func handle_groups(groups):
 		if g == 'G':
 			print("G")
 		elif g == 'B': #TODO add more and make this not specific to B
+			bounce.play()
 			velocity.y = -2*jump_force
 			launched = true
 			just_launched = true
