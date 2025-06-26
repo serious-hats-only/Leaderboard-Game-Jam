@@ -9,7 +9,8 @@ var acceleration = 500
 var friction = 250
 var grounded = false
 var launched = false
-var just_launched = false;
+var just_launched = false
+var stuck = false
 
 var kick_velocity = 3600
 
@@ -37,7 +38,7 @@ func handle_groups(groups):
 		print(g)
 		if g == 'G':
 			print("G")
-		elif g == 'B': #TODO add more and make this not specific to B
+		elif g == 'B' or g == '0': #TODO add more and make this not specific to B
 			bounce.play()
 			velocity.y = -2*jump_force
 			launched = true
@@ -60,7 +61,8 @@ func move(delta):
 		apply_movement(move_dir * acceleration * delta) #apply movement
 			
 	velocity.y += gravity; #apply gravity
-	
+	if stuck:
+		velocity.x = 0
 	move_and_slide()
 	just_launched = false
 	
@@ -88,7 +90,7 @@ func move(delta):
 		$AnimatedSprite2D.rotation = 0
 		if not just_launched: launched = false
 
-	if Input.is_action_just_pressed("move_up") and is_on_floor():
+	if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck):
 		velocity.y = -jump_force
 	
 	

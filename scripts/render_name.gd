@@ -35,16 +35,19 @@ func convert_string_to_rigidbody():
 	bitmap.create_from_image_alpha(img, 0.0)
 	polys = bitmap.opaque_to_polygons(Rect2(Vector2(0, 0), bitmap.get_size()), 0)
 	for poly in polys:
-		var char = text[bodies.size()]
+		var char = '.'
+		if bodies.size() < text.length():
+			char = text[bodies.size()]
+		print("char " + char)
 		var char_rigid = null
-		if char == 'G':
+		if char == 'G' || char == 'N':
 			char_rigid = char_area.instantiate()
 		else:
 			char_rigid = char_rigid_body.instantiate()
 		for i in poly.size():
 			poly[i] -= size/2.0
 		char_rigid.get_child(0).polygon = poly
-		char_rigid.add_to_group(text[bodies.size()]) #add it to a group corresponding to the letter
+		char_rigid.add_to_group(char) #add it to a group corresponding to the letter
 		add_child(char_rigid)
 		bodies.append(char_rigid)
 	queue_redraw()

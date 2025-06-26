@@ -9,8 +9,13 @@ func _ready() -> void:
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
 	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
 	for i in viewport_labels.size():
-		viewport_labels[i].text = player_list_with_pos[i]["player_name"]
-		sprites[i].text = viewport_labels[i].text.to_upper()
+		var score = player_list_with_pos[i]["score"]
+		var name = player_list_with_pos[i]["player_name"]
+		var str = str(i) + ". " + name.to_upper() + " " + str(score)
+		var strNoPeriod = str.replace('.', '')
+		strNoPeriod = strNoPeriod.replace(' ', '')
+		viewport_labels[i].text = str
+		sprites[i].text = strNoPeriod
 		sprites[i].generate()
 
 func sort_by_score_ascending(a, b):
