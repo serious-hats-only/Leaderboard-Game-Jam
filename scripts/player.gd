@@ -40,7 +40,7 @@ func handle_groups(groups):
 			print("G")
 		elif g == 'B' or g == '0': #TODO add more and make this not specific to B
 			bounce.play()
-			velocity.y = -2*jump_force
+			#velocity.y = -2*jump_force
 			launched = true
 			just_launched = true
 
@@ -77,12 +77,18 @@ func move(delta):
 		var c = result["collider"]
 		var groups = c.get_groups()
 		handle_groups(groups)
+		if just_launched:
+			velocity.y = -2*jump_force
 
 	var collisions = get_slide_collision_count()
 	for i in range(collisions):
 		var c = get_slide_collision(i)
 		var groups = c.get_collider().get_groups()
 		handle_groups(groups)
+		if just_launched:
+			var norm = c.get_normal()
+			norm *= 2*jump_force
+			velocity = norm
 
 	if not is_on_floor() and launched:
 		$AnimatedSprite2D.rotate((PI/2.0)*delta)

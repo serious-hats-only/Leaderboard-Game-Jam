@@ -9,6 +9,8 @@ func _ready() -> void:
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
 	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
 	for i in viewport_labels.size():
+		if i >= player_list_with_pos.size():
+			break
 		var score = player_list_with_pos[i]["score"]
 		var name = player_list_with_pos[i]["player_name"]
 		var str = str(i) + ". " + name.to_upper() + " " + str(score)
