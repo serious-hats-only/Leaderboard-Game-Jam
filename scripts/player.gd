@@ -11,6 +11,7 @@ var grounded = false
 var launched = false
 var just_launched = false
 var stuck = false
+var just_broke = false
 
 var kick_velocity = 3600
 
@@ -42,6 +43,8 @@ func handle_groups(groups):
 			#velocity.y = -2*jump_force
 			launched = true
 			just_launched = true
+		elif g == 'A':
+			just_broke = true
 
 func move(delta):
 	# Visuals
@@ -86,9 +89,13 @@ func move(delta):
 		handle_groups(groups)
 		if just_launched:
 			var norm = c.get_normal()
-			#c.get_collider().get_parent().queue_free()
 			norm *= 2*jump_force
 			velocity = norm
+			continue
+		# if launched and hackily check if it's a character
+		if just_broke or (launched and groups.size() > 0 and groups[0].length() == 1): 
+			c.get_collider().get_parent().queue_free()
+			just_broke = false
 
 	if not is_on_floor() and launched:
 		$AnimatedSprite2D.rotate((PI/2.0)*delta)

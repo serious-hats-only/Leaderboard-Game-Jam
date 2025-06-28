@@ -7,7 +7,7 @@ var player_list_with_pos = []
 var char_colors = {
 	'0' = 'red',
 	'B' = 'green',
-	'9' = 'FFFF00'
+	'A' = 'FFFF00'
 }
 
 func _ready() -> void:
@@ -45,10 +45,10 @@ func _ready() -> void:
 			dupe.viewport = vp_dupe
 			dupe.doOnce = false
 			dupe.ready_to_generate = false
-			dupe.position = Vector2(0,0)
+			dupe.position = spr.position
 			dupe.position.x += 50
 			dupe.visible = true
-			spr.add_child(dupe)
+			spr.get_parent().add_child(dupe)
 			spr = dupe
 
 func sort_by_score_ascending(a, b):
