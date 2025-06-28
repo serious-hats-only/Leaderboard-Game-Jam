@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+// Credit: NahtreX, godotshaders.com
+
 // The texture to scroll with.
 uniform sampler2D scrollingTexture: hint_default_white;
 // The scroll texture scale.

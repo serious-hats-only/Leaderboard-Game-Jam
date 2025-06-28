@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cmiy1deo24hin" path="res://scripts/complete_run_test.gd" id="1_sk125"]
 [ext_resource type="AudioStream" uid="uid://der4err17i6eg" path="res://audio/sfx/party_horn.mp3" id="2_sk125"]
 [ext_resource type="PackedScene" uid="uid://cro58yaedfu1" path="res://scenes/confetti.tscn" id="2_x5yvn"]
-[ext_resource type="AudioStream" uid="uid://b2uy6jruahm6p" path="res://audio/music/Disco_sample.mp3" id="3_x5yvn"]
+[ext_resource type="AudioStream" uid="uid://b2uy6jruahm6p" path="res://audio/music/disco_sample.mp3" id="3_x5yvn"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="6_vk7ao"]
 
 [sub_resource type="Animation" id="Animation_t6t8d"]
@@ -46,6 +46,7 @@ _data = {
 }
 
 [node name="complete_run_test" type="Node2D"]
+z_index = 1
 script = ExtResource("1_sk125")
 confetti = ExtResource("2_x5yvn")
 
@@ -62,9 +63,11 @@ stream = ExtResource("3_x5yvn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -79,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("6_vk7ao")
 theme_override_font_sizes/font_size = 48
-text = "NICE CLIMB!"
+text = "GNICE CLIMB!"
 
 [node name="Top_Layer" type="Label" parent="Control"]
 layout_mode = 1
@@ -94,7 +97,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0.745098, 0, 1)
 theme_override_fonts/font = ExtResource("6_vk7ao")
 theme_override_font_sizes/font_size = 48
-text = "NICE CLIMB!"
+text = "GNICE CLIMB!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

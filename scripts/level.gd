@@ -10,6 +10,7 @@ var run_is_complete = false
 @onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
 @onready var Beach: AudioStreamPlayer2D = $Music/Beach
 @onready var Disco: AudioStreamPlayer2D = $Music/Disco
+@onready var player: Player = $player
 
 func _ready():
 	gnome_shower.play()
@@ -20,15 +21,15 @@ func _on_submit_pressed() -> void:
 	$Control/GetPlayerName.show()
 	$Control/Submit.hide()
 
+
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if !run_is_complete:
+	if !run_is_complete and body == player:
 		var complete_run_instantiated = complete_run.instantiate()
 	
 		get_node("player").add_child(complete_run_instantiated)
-		complete_run_instantiated.global_position = Vector2(576.0, 324.0)
 		
 		run_is_complete = true

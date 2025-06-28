@@ -210,12 +210,15 @@ speed = 200
 
 [node name="Bounce" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("2_fjrip")
+bus = &"SFX"
 
 [node name="Broke" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("3_smehm")
+bus = &"SFX"
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("4_ur7pv")
+bus = &"SFX"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.10757e-12, 2.72761e-12)

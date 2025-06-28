@@ -47,7 +47,6 @@ func _ready() -> void:
 	# play audio
 	confetti_pop.play()
 	party_horn.play()
-	disco_sample.play()
 		
 	# show label
 	nice_climb.visible = true
