@@ -28,6 +28,7 @@ func generate():
 func convert_string_to_rigidbody():
 	if doOnce or not ready_to_generate:
 		return
+	#print("text " + text)
 	doOnce = true
 	var size = self.texture.get_size()
 	var img = self.texture.get_image()
@@ -38,7 +39,7 @@ func convert_string_to_rigidbody():
 		var char = '.'
 		if bodies.size() < text.length():
 			char = text[bodies.size()]
-		print("char " + char)
+		#print("char " + char)
 		var char_rigid = null
 		if char == 'G' || char == 'N':
 			char_rigid = char_area.instantiate()

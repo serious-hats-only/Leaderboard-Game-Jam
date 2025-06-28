@@ -35,7 +35,6 @@ func _physics_process(delta):
 
 func handle_groups(groups):
 	for g in groups:
-		print(g)
 		if g == 'G':
 			print("G")
 		elif g == 'B' or g == '0': #TODO add more and make this not specific to B
@@ -87,6 +86,7 @@ func move(delta):
 		handle_groups(groups)
 		if just_launched:
 			var norm = c.get_normal()
+			#c.get_collider().get_parent().queue_free()
 			norm *= 2*jump_force
 			velocity = norm
 

@@ -6,7 +6,8 @@ var player_list_with_pos = []
 
 var char_colors = {
 	'0' = 'red',
-	'B' = 'green'
+	'B' = 'green',
+	'9' = 'FFFF00'
 }
 
 func _ready() -> void:
@@ -21,11 +22,34 @@ func _ready() -> void:
 		var str = str(i) + ". " + name.to_upper() + " " + str(score)
 		var strNoPeriod = str.replace('.', '')
 		strNoPeriod = strNoPeriod.replace(' ', '')
-		for c in char_colors:
-			str = str.replace(c, "[color=" + char_colors[c] + "]" + c + "[/color]")
-		viewport_labels[i].text = str
-		sprites[i].text = strNoPeriod
-		sprites[i].generate()
+		var strRaw = str
+
+		var spr = sprites[i]
+		var n = 0
+		var x_pos = spr.position.x
+		for c in strRaw:
+			n += 1
+			#spr.viewport.$Control.$RichTextLabel.text = str(v)
+			print(c)
+			var vp_text = c
+			if char_colors.has(c):
+				vp_text = "[color=" + char_colors[c] + "]" + c + "[/color]"
+			spr.viewport.get_node("Control").get_node("RichTextLabel").text = vp_text
+			spr.text = c
+			spr.generate()
+			if n == strRaw.length():
+				break
+			var dupe = spr.duplicate()
+			var vp_dupe = spr.viewport.duplicate()
+			spr.viewport.get_parent().add_child(vp_dupe)
+			dupe.viewport = vp_dupe
+			dupe.doOnce = false
+			dupe.ready_to_generate = false
+			dupe.position = Vector2(0,0)
+			dupe.position.x += 50
+			dupe.visible = true
+			spr.add_child(dupe)
+			spr = dupe
 
 func sort_by_score_ascending(a, b):
 	return a["score"] < b["score"]
