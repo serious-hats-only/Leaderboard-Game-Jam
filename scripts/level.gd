@@ -6,6 +6,13 @@ var score = 0
 
 var run_is_complete = false
 
+@onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
+@onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
+@onready var Beach: AudioStreamPlayer2D = $Music/Beach
+@onready var Disco: AudioStreamPlayer2D = $Music/Disco
+
+func _ready():
+	gnome_shower.play()
 
 func _on_submit_pressed() -> void:
 	Global.display_speedrun_timer = false

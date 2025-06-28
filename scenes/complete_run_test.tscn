@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cmiy1deo24hin" path="res://scripts/complete_run_test.gd" id="1_sk125"]
 [ext_resource type="AudioStream" uid="uid://der4err17i6eg" path="res://audio/sfx/party_horn.mp3" id="2_sk125"]
 [ext_resource type="PackedScene" uid="uid://cro58yaedfu1" path="res://scenes/confetti.tscn" id="2_x5yvn"]
-[ext_resource type="AudioStream" uid="uid://b2uy6jruahm6p" path="res://audio/music/disco_sample.mp3" id="3_x5yvn"]
+[ext_resource type="AudioStream" uid="uid://b2uy6jruahm6p" path="res://audio/music/Disco_sample.mp3" id="3_x5yvn"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="6_vk7ao"]
 
 [sub_resource type="Animation" id="Animation_t6t8d"]

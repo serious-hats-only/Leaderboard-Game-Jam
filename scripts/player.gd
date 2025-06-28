@@ -23,7 +23,8 @@ var kick_velocity = 3600
 
 # audio references
 @onready var bounce: AudioStreamPlayer2D = $Audio/Bounce
-
+@onready var broke: AudioStreamPlayer2D = $Audio/Broke
+@onready var jump: AudioStreamPlayer2D = $Audio/Jump
 
 
 
@@ -45,6 +46,7 @@ func handle_groups(groups):
 			just_launched = true
 		elif g == 'A':
 			just_broke = true
+			broke.play()
 
 func move(delta):
 	# Visuals
@@ -105,7 +107,7 @@ func move(delta):
 
 	if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck):
 		velocity.y = -jump_force
-	
+		jump.play()
 	
 func apply_friction(amount):
 	if abs(velocity.x) > amount:

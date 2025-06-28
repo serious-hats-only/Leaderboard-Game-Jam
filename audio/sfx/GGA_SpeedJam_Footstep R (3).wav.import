@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpaf7bevwyjkv"
+path="res://.godot/imported/GGA_SpeedJam_Footstep R (3).wav-69a034c3362b24a670c03bc30ab04d69.sample"
+
+[deps]
+
+source_file="res://audio/sfx/GGA_SpeedJam_Footstep R (3).wav"
+dest_files=["res://.godot/imported/GGA_SpeedJam_Footstep R (3).wav-69a034c3362b24a670c03bc30ab04d69.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
