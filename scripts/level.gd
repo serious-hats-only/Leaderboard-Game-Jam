@@ -11,16 +11,11 @@ var run_is_complete = false
 @onready var Beach: AudioStreamPlayer2D = $Music/Beach
 @onready var Disco: AudioStreamPlayer2D = $Music/Disco
 @onready var player: Player = $player
+@onready var get_player_name: Control = $Control/GetPlayerName
 
 func _ready():
 	gnome_shower.play()
-
-func _on_submit_pressed() -> void:
-	Global.display_speedrun_timer = false
-	Global.speedrun_time_end = Global.speedrun_time
-	$Control/GetPlayerName.show()
-	$Control/Submit.hide()
-
+	
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
@@ -28,8 +23,13 @@ func _on_back_pressed() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if !run_is_complete and body == player:
-		var complete_run_instantiated = complete_run.instantiate()
-	
-		get_node("player").add_child(complete_run_instantiated)
 		
+		Global.player_can_move = false
+		Global.display_speedrun_timer = false
+		Global.speedrun_time_end = Global.speedrun_time
+		get_player_name.show()
+		get_player_name.position = player.position
+		
+		var complete_run_instantiated = complete_run.instantiate()
+		get_node("player").add_child(complete_run_instantiated)
 		run_is_complete = true
