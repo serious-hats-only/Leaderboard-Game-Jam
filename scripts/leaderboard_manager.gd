@@ -1,8 +1,13 @@
 extends Node2D
 
-@export var viewport_labels : Array[Label] = []
+@export var viewport_labels : Array[RichTextLabel] = []
 @export var sprites : Array[GeneratedTextSprite] = []
 var player_list_with_pos = []
+
+var char_colors = {
+	'0' = 'red',
+	'B' = 'green'
+}
 
 func _ready() -> void:
 	# when scene loads, 
@@ -16,6 +21,8 @@ func _ready() -> void:
 		var str = str(i) + ". " + name.to_upper() + " " + str(score)
 		var strNoPeriod = str.replace('.', '')
 		strNoPeriod = strNoPeriod.replace(' ', '')
+		for c in char_colors:
+			str = str.replace(c, "[color=" + char_colors[c] + "]" + c + "[/color]")
 		viewport_labels[i].text = str
 		sprites[i].text = strNoPeriod
 		sprites[i].generate()

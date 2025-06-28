@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cgorhdq2j2wib" path="res://sprites/title_placeholder.png" id="2_ekxnf"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="3_bqqt6"]
 [ext_resource type="Shader" uid="uid://dkqk67gmqmx4o" path="res://scripts/main_menu.gdshader" id="3_rtw2f"]
-[ext_resource type="Script" uid="uid://pmo5ovm36woj" path="res://scripts/main_menu_leaderboard.gd" id="3_wu84c"]
+[ext_resource type="Script" path="res://scripts/main_menu_leaderboard.gd" id="3_wu84c"]
 [ext_resource type="PackedScene" uid="uid://dde8joi25fpg2" path="res://scenes/level_for_viewport.tscn" id="5_8ln24"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
