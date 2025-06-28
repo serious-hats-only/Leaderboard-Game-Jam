@@ -14,7 +14,9 @@ func _ready() -> void:
 	# when scene loads, 
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
 	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
+	var speed = 1
 	for i in viewport_labels.size():
+		#speed *= -1
 		if i >= player_list_with_pos.size():
 			break
 		var score = player_list_with_pos[i]["score"]
@@ -25,6 +27,7 @@ func _ready() -> void:
 		var strRaw = str
 
 		var spr = sprites[i]
+		spr.move_speed *= speed
 		var n = 0
 		var x_pos = spr.position.x
 		for c in strRaw:
@@ -42,10 +45,12 @@ func _ready() -> void:
 			var dupe = spr.duplicate()
 			var vp_dupe = spr.viewport.duplicate()
 			spr.viewport.get_parent().add_child(vp_dupe)
+			dupe.debug_draw = false
 			dupe.viewport = vp_dupe
 			dupe.doOnce = false
 			dupe.ready_to_generate = false
 			dupe.position = spr.position
+			#dupe.rotation = randf_range(-0.6, 0.6)
 			dupe.position.x += 50
 			dupe.visible = true
 			spr.get_parent().add_child(dupe)

@@ -3,6 +3,7 @@ class_name GeneratedTextSprite
 
 @export var debug_draw = false
 @export var viewport : SubViewport = null
+@export var move_speed = -100
 
 var text = ""
 var bodies = []
@@ -20,6 +21,21 @@ func _ready() -> void:
 var ready_to_generate = false
 var doOnce = false
 var polys
+
+func _physics_process(delta: float) -> void:
+	global_position.x += delta * move_speed
+	if global_position.x < -50 and move_speed < 0:
+		global_position.x = 1220
+	if global_position.x > 1220 and move_speed > 0:
+		global_position.x = -50
+	#for b in bodies:
+#		b.global_position.x += delta * move_speed
+#		if b.global_position.x < -50:
+#			b.global_position.x = 1220
+	#	if debug_draw:
+	#		print(b.global_position)
+	queue_redraw()
+
 
 func generate():
 	ready_to_generate = true
