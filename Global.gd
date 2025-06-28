@@ -8,6 +8,7 @@ var score = 0
 var speedrun_time = 0
 var speedrun_time_end = 0
 var display_speedrun_timer = true
+var player_can_move = true
 
 func _ready():
 	SilentWolf.configure({

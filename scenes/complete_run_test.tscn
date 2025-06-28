@@ -47,6 +47,7 @@ _data = {
 
 [node name="complete_run_test" type="Node2D"]
 z_index = 1
+position = Vector2(0, -174)
 script = ExtResource("1_sk125")
 confetti = ExtResource("2_x5yvn")
 
