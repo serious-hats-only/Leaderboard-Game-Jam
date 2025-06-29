@@ -12,9 +12,10 @@ var launched = false
 var just_launched = false
 var stuck = false
 var just_broke = false
+var first_frame_passed = false
 
 var kick_velocity = 3600
-var isgrounded = true 
+var isgrounded = false 
 @onready var collision_shape = %CollisionShape2D
 @onready var shape = collision_shape.shape
 @onready var dust = preload("res://scenes/dust.tscn")
@@ -34,16 +35,23 @@ func _ready():
 #	Globals.player = self
 
 func _physics_process(delta):
+	
+	if not first_frame_passed:
+		first_frame_passed = true
+		isgrounded = is_on_floor()
+		return # Skip movement and effects this frame
+
 	move(delta)
 	
-	if isgrounded == false and is_on_floor() == true: #Instantiate landing dust particles
+	var was_grounded = isgrounded
+	isgrounded = is_on_floor()
+
+	if first_frame_passed and not was_grounded and isgrounded and float(Global.speedrun_time) > 0.2:
 		var instance = dust.instantiate()
 		instance.global_position = $Marker2D.global_position
 		get_parent().add_child(instance)
 		land.play()
-	
-	isgrounded = is_on_floor()
-
+		
 func handle_groups(groups):
 	for g in groups:
 		if g == 'G':
@@ -119,7 +127,7 @@ func move(delta):
 			$AnimatedSprite2D.rotation = 0
 			if not just_launched: launched = false
 
-		if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck):
+		if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck) and float(Global.speedrun_time) > 0.2:
 			velocity.y = -jump_force
 			jump.play()
 
