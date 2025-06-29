@@ -14,10 +14,10 @@ var stuck = false
 var just_broke = false
 
 var kick_velocity = 3600
-
+var isgrounded = true 
 @onready var collision_shape = %CollisionShape2D
 @onready var shape = collision_shape.shape
-
+@onready var dust = preload("res://scenes/dust.tscn")
 @export var gravity = 20.0
 @export var jump_force = 250.0
 
@@ -34,6 +34,13 @@ func _ready():
 
 func _physics_process(delta):
 	move(delta)
+	
+	if isgrounded == false and is_on_floor() == true: #Instantiate landing dust particles
+		var instance = dust.instantiate()
+		instance.global_position = $Marker2D.global_position
+		get_parent().add_child(instance)
+	
+	isgrounded = is_on_floor()
 
 func handle_groups(groups):
 	for g in groups:

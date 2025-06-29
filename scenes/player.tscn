@@ -242,3 +242,7 @@ animation = &"jump"
 [node name="DebugLine2D" type="Line2D" parent="."]
 visible = false
 points = PackedVector2Array(0, 0, 0, 70)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+z_index = 1
+position = Vector2(0, 54)
