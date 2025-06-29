@@ -25,6 +25,7 @@ var isgrounded = true
 @onready var bounce: AudioStreamPlayer2D = $Audio/Bounce
 @onready var broke: AudioStreamPlayer2D = $Audio/Broke
 @onready var jump: AudioStreamPlayer2D = $Audio/Jump
+@onready var land: AudioStreamPlayer2D = $Audio/Land
 
 
 
@@ -39,6 +40,7 @@ func _physics_process(delta):
 		var instance = dust.instantiate()
 		instance.global_position = $Marker2D.global_position
 		get_parent().add_child(instance)
+		land.play()
 	
 	isgrounded = is_on_floor()
 
@@ -120,6 +122,11 @@ func move(delta):
 		if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck):
 			velocity.y = -jump_force
 			jump.play()
+
+			if is_on_floor(): #Dust when jumping
+				var instance = dust.instantiate()
+				instance.global_position = $Marker2D.global_position
+				get_parent().add_child(instance)
 	
 func apply_friction(amount):
 	if abs(velocity.x) > amount:
