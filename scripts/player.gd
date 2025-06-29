@@ -22,6 +22,8 @@ var isgrounded = false
 @export var gravity = 20.0
 @export var jump_force = 250.0
 
+@export var confetti = preload("res://scenes/confetti.tscn")
+
 # audio references
 @onready var bounce: AudioStreamPlayer2D = $Audio/Bounce
 @onready var broke: AudioStreamPlayer2D = $Audio/Broke
@@ -64,6 +66,18 @@ func handle_groups(groups):
 		elif g == 'A':
 			just_broke = true
 			broke.play()
+			var confetti_instance = confetti.instantiate()
+			# Get the actual GPUParticles2D node
+			var particles = confetti_instance.get_node("GPUParticles2D")
+			particles.one_shot = true
+			particles.emitting = true
+			confetti_instance.global_position = $Marker2D.global_position
+			get_tree().current_scene.add_child(confetti_instance)
+			
+			# Remove after particle lifetime
+			await get_tree().create_timer(particles.lifetime).timeout
+			confetti_instance.queue_free()
+						
 
 func move(delta):
 	if Global.player_can_move:
@@ -113,8 +127,9 @@ func move(delta):
 				velocity = norm
 				continue
 			# if launched and hackily check if it's a character
-			elif just_broke:# or (launched and groups.size() > 0 and groups[0].length() == 1): 
+			elif just_broke:# or (launched and groups.size() > 0 and groups[0].length() == 1): 		
 				c.get_collider().get_parent().queue_free()
+				
 				just_broke = false
 			#elif groups.size() > 0 and groups[0].length() == 1:
 			#	if c.get_collider().get_parent() is GeneratedTextSprite:
