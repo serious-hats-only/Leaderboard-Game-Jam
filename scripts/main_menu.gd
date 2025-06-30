@@ -2,7 +2,11 @@ extends Control
 
 @onready var button_animation_player: AnimationPlayer = $ButtonAnimationPlayer
 @onready var game_start_animation_player: AnimationPlayer = $GameStartAnimationPlayer
+@onready var eating_sand: AudioStreamPlayer2D = $EatingSand
 @onready var icg_logo: Sprite2D = $Control/ICGLogo
+
+func _ready() -> void:
+	eating_sand.play()
 
 
 func _input(event: InputEvent) -> void:

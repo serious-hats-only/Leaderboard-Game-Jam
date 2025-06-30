@@ -14,6 +14,7 @@ var run_is_complete = false
 @onready var get_player_name: Control = $Control/GetPlayerName
 
 func _ready():
+	Global.score_submitted.connect(score_submitted_restart)
 	gnome_shower.play()
 
 func _input(event: InputEvent) -> void:
@@ -30,9 +31,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		Global.player_can_move = false
 		Global.display_speedrun_timer = false
 		Global.speedrun_time_end = Global.speedrun_time
+		player.visible = false
 		get_player_name.show()
-		get_player_name.position = player.position
 		
 		var complete_run_instantiated = complete_run.instantiate()
-		get_node("player").add_child(complete_run_instantiated)
+		get_node("Control").add_child(complete_run_instantiated)
 		run_is_complete = true
+
+func score_submitted_restart():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

@@ -46,7 +46,7 @@ _data = {
 }
 
 [node name="complete_run_test" type="Node2D"]
-z_index = 1
+z_index = 2
 script = ExtResource("1_sk125")
 confetti = ExtResource("2_x5yvn")
 
@@ -68,8 +68,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -174.0
-offset_bottom = -174.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

@@ -38,11 +38,11 @@ func _ready() -> void:
 	
 	# instantiate left and right confetti streams
 	get_parent().add_child.call_deferred(confetti_instantiated_left)
-	confetti_instantiated_left.global_position = Vector2(-175.0, 330.0)
-	confetti_instantiated_left.global_rotation_degrees = 35.0
+	confetti_instantiated_left.position = Vector2(0, -1433.0)
+	confetti_instantiated_left.rotation_degrees = 35.0
 	get_parent().add_child.call_deferred(confetti_instantiated_right)
-	confetti_instantiated_right.global_position = Vector2(175.0, 330.0)
-	confetti_instantiated_right.global_rotation_degrees = -35.0
+	confetti_instantiated_right.position = Vector2(1152, -1433.0)
+	confetti_instantiated_right.rotation_degrees = -35.0
 		
 	# play audio
 	confetti_pop.play()
@@ -50,6 +50,7 @@ func _ready() -> void:
 		
 	# show label
 	nice_climb.visible = true
+	nice_climb.position = Vector2(576.0, -1433.0)
 	animation_player.play("label_flicker")
 
 
