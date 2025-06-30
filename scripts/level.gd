@@ -12,10 +12,13 @@ var run_is_complete = false
 @onready var Disco: AudioStreamPlayer2D = $Music/Disco
 @onready var player: Player = $player
 @onready var get_player_name: Control = $Control/GetPlayerName
-@onready var icg_logo: Sprite2D = $"player/ICG LOGO"
 
 func _ready():
 	gnome_shower.play()
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
