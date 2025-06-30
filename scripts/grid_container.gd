@@ -1,12 +1,16 @@
 extends GridContainer
 
+var sw_master = []
 var player_list_with_pos = []
 
 func _ready() -> void:
 	
 	# when scene loads, 
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
-	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
+	# assign the master leaderboard array to a shorter variable name for clarity
+	var sw_master = SilentWolf.Scores.scores
+	# truncate the master leaderboard to only the top 10 entries
+	player_list_with_pos = sort_players_and_add_position((sw_master).slice(sw_master.size() - 10, sw_master.size()))
 	add_player_to_grid(player_list_with_pos)
 
 func add_player_to_grid(player_list):
@@ -16,7 +20,6 @@ func add_player_to_grid(player_list):
 	
 	for score_data in player_list_with_pos:
 		var pos_label = Label.new()
-		# pos_label.label_settings.font_color = Color.BLACK
 		pos_label.text = str(score_data["position"])
 		pos_label.show()
 		pos_vbox.add_child(pos_label)

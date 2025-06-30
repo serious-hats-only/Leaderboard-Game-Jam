@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dde8joi25fpg2"]
+[gd_scene load_steps=6 format=3 uid="uid://dde8joi25fpg2"]
 
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="1_kdm6g"]
+[ext_resource type="Script" uid="uid://crruo1jxnxd8s" path="res://scripts/level_for_viewport.gd" id="1_sta7v"]
 
 [sub_resource type="Gradient" id="Gradient_kdm6g"]
 colors = PackedColorArray(1, 1, 1, 1, 0.0862745, 0.321569, 1, 1)
@@ -12,6 +13,7 @@ gradient = SubResource("Gradient_kdm6g")
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="LevelForViewport" type="Node2D"]
+script = ExtResource("1_sta7v")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 1227.0
@@ -22,6 +24,7 @@ rotation = 1.5708
 texture = SubResource("GradientTexture2D_sta7v")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

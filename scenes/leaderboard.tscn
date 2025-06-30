@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv7wkfppwh3xu"]
+[gd_scene load_steps=6 format=3 uid="uid://bv7wkfppwh3xu"]
 
 [ext_resource type="Script" uid="uid://c6q4efmitay36" path="res://scripts/grid_container.gd" id="1_mrg81"]
 [ext_resource type="Script" uid="uid://nu70qb15nvj8" path="res://scripts/leaderboard.gd" id="1_wgq7h"]
+[ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="2_8lgqg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyabi"]
 font_size = 64
@@ -9,6 +10,7 @@ outline_size = 19
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_wgq7h"]
+default_font = ExtResource("2_8lgqg")
 Label/colors/font_color = Color(0, 0, 0, 1)
 
 [node name="Leaderboard" type="Control"]
@@ -70,7 +72,7 @@ offset_bottom = 285.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_wgq7h")
-theme_override_constants/h_separation = 250
+theme_override_constants/h_separation = 25
 columns = 3
 script = ExtResource("1_mrg81")
 

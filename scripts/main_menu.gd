@@ -2,7 +2,14 @@ extends Control
 
 @onready var button_animation_player: AnimationPlayer = $ButtonAnimationPlayer
 @onready var game_start_animation_player: AnimationPlayer = $GameStartAnimationPlayer
+@onready var icg_logo: Sprite2D = $Control/ICGLogo
 
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("CTLG"):
+		icg_logo.visible = true
+	if Input.is_action_just_released("CTLG"):
+		icg_logo.visible = false
 
 func _on_ready() -> void:
 	button_animation_player.play("button_slide")

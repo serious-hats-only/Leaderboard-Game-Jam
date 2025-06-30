@@ -13,6 +13,7 @@ var just_launched = false
 var stuck = false
 var just_broke = false
 var first_frame_passed = false
+var can_jump
 
 var kick_velocity = 3600
 var isgrounded = false 
@@ -141,10 +142,16 @@ func move(delta):
 		else:
 			$AnimatedSprite2D.rotation = 0
 			if not just_launched: launched = false
-
+		
+		# Handle jump
+		if is_on_floor(): can_jump = true
 		if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck) and float(Global.speedrun_time) > 0.2:
 			velocity.y = -jump_force
 			jump.play()
+		elif not is_on_floor() and can_jump:
+			if Input.is_action_just_pressed("move_up"):
+				velocity.y = -jump_force * 1.5
+				can_jump = false
 
 			if is_on_floor(): #Dust when jumping
 				var instance = dust.instantiate()
