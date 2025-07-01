@@ -1,6 +1,7 @@
 extends Node
 
 signal score_submitted
+signal businessman_kicked
 
 var player_name: String
 var player_list = []

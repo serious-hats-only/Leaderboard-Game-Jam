@@ -1,37 +1,47 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=30 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Shader" uid="uid://dkqk67gmqmx4o" path="res://scripts/main_menu.gdshader" id="3_rtw2f"]
 [ext_resource type="Script" uid="uid://pmo5ovm36woj" path="res://scripts/main_menu_leaderboard.gd" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://dnr7yad0aq4ot" path="res://sprites/gnome_single.png" id="4_8ln24"]
 [ext_resource type="Shader" uid="uid://docr2xkxehvch" path="res://scripts/main_menu_gnome.gdshader" id="4_rtw2f"]
-[ext_resource type="PackedScene" uid="uid://dde8joi25fpg2" path="res://scenes/level_for_viewport.tscn" id="5_8ln24"]
+[ext_resource type="Texture2D" uid="uid://d173nqvdiqq2b" path="res://sprites/old_tv_resize.png" id="5_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://dogwh5fqgwq8y" path="res://sprites/ICG_Logo.png" id="5_jk1qb"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="7_tbmy8"]
 [ext_resource type="Script" uid="uid://c6q4efmitay36" path="res://scripts/grid_container.gd" id="8_jk1qb"]
 [ext_resource type="AudioStream" uid="uid://dr2eq5o7xe3x4" path="res://audio/music/Eating Sand.mp3" id="10_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://4lmvq4et0ufm" path="res://prefabs/foot.tscn" id="11_flqon"]
+[ext_resource type="Texture2D" uid="uid://bi6nid75rvlii" path="res://sprites/businessman.png" id="12_rcqid"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa1go"]
 shader = ExtResource("3_rtw2f")
-shader_parameter/color_one = Color(0, 0.447059, 0, 1)
-shader_parameter/color_two = Color(0.266667, 0.235294, 0.607843, 1)
+shader_parameter/color_one = Color(0, 0.517647, 0, 1)
+shader_parameter/color_two = Color(0, 0, 0.517647, 1)
 shader_parameter/angle = 20.0
 shader_parameter/line_count = 40.0
 shader_parameter/speed = 4.4
-shader_parameter/blur = 0.25
-
-[sub_resource type="Theme" id="Theme_5dd4i"]
-default_font = ExtResource("7_tbmy8")
-Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_outline_color = Color(0, 0, 0, 1)
-Label/constants/outline_size = 10
+shader_parameter/blur = 0.75
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbmy8"]
 font = ExtResource("7_tbmy8")
-font_size = 49
+font_size = 36
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jk1qb"]
-font = ExtResource("7_tbmy8")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="Theme" id="Theme_5dd4i"]
+default_font = ExtResource("7_tbmy8")
+default_font_size = 8
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
 
 [sub_resource type="Animation" id="Animation_ekxnf"]
 length = 0.001
@@ -155,6 +165,67 @@ _data = {
 &"game_start": SubResource("Animation_8ln24")
 }
 
+[sub_resource type="Animation" id="Animation_7b55j"]
+resource_name = "character_kicked"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Businessman:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.466667, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="Animation" id="Animation_5pajh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Businessman:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7ex8"]
+_data = {
+&"RESET": SubResource("Animation_5pajh"),
+&"character_kicked": SubResource("Animation_7b55j")
+}
+
 [sub_resource type="Gradient" id="Gradient_rtw2f"]
 offsets = PackedFloat32Array(0.282258, 1)
 colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 0)
@@ -176,6 +247,12 @@ shader_parameter/color = SubResource("GradientTexture2D_oa1go")
 shader_parameter/gradientResolution = 10
 shader_parameter/tolerance = 0.0
 
+[sub_resource type="Curve2D" id="Curve2D_1ajci"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 264, 548, -427.517, -265.002, 427.517, 265.002, 963, 452)
+}
+point_count = 2
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -188,6 +265,7 @@ metadata/_edit_vertical_guides_ = [0.0]
 metadata/_edit_horizontal_guides_ = [0.0]
 
 [node name="BG" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_oa1go")
 layout_mode = 1
 anchors_preset = 15
@@ -207,6 +285,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Play" type="Button" parent="Control"]
+visible = false
 layout_mode = 1
 offset_left = 1168.0
 offset_top = 273.0
@@ -215,6 +294,7 @@ offset_bottom = 334.0
 text = "PLAY"
 
 [node name="Credits" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 1168.0
 offset_top = 466.0
@@ -222,64 +302,58 @@ offset_right = 1334.0
 offset_bottom = 527.0
 text = "CREDITS"
 
-[node name="Leaderboard" type="GridContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 103.0
-offset_top = 75.0
-offset_right = 103.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_5dd4i")
-theme_override_constants/h_separation = 25
-columns = 3
-script = ExtResource("8_jk1qb")
-
-[node name="TempTitle" type="Label" parent="Control"]
+[node name="Title" type="Label" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 63.0
-offset_top = 70.0
-offset_right = 511.0
-offset_bottom = 93.0
-text = "CTL + G"
+offset_left = 51.0
+offset_top = 146.0
+offset_right = 1139.0
+offset_bottom = 407.0
+text = "a magic lizard kicked me into a tv and now i'm a gnome who has to climb a leaderboard"
 label_settings = SubResource("LabelSettings_tbmy8")
-
-[node name="TempTitle2" type="Label" parent="Control"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 75.0
-offset_top = 152.0
-offset_right = 539.0
-offset_bottom = 197.0
-text = "Climb the leaderboard, plus gnome"
-label_settings = SubResource("LabelSettings_jk1qb")
+autowrap_mode = 2
 
 [node name="ICGLogo" type="Sprite2D" parent="Control"]
 visible = false
 position = Vector2(919, 114)
 texture = ExtResource("5_jk1qb")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-visible = false
+[node name="TV" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 744.0
-offset_top = 114.0
-offset_right = 994.0
-offset_bottom = 626.0
+offset_left = 842.0
+offset_top = 354.0
+offset_right = 1092.0
+offset_bottom = 604.0
+texture = ExtResource("5_5dd4i")
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(250, 512)
-render_target_update_mode = 0
+[node name="Panel" type="Panel" parent="Control/TV"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -94.0
+offset_right = 100.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lgwnu")
 
-[node name="LevelForViewport" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_8ln24")]
+[node name="Leaderboard" type="GridContainer" parent="Control/TV/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5dd4i")
+theme_override_constants/h_separation = 25
+columns = 3
+script = ExtResource("8_jk1qb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
@@ -294,7 +368,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_rtw2f")
 }
 
+[node name="BusinessmanAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j7ex8")
+}
+
 [node name="GnomeSingle" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_jk1qb")
 position = Vector2(964, 399)
 scale = Vector2(5, 5)
@@ -304,6 +384,21 @@ script = ExtResource("3_wu84c")
 [node name="EatingSand" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_5dd4i")
 bus = &"Music"
+
+[node name="Foot" parent="." instance=ExtResource("11_flqon")]
+position = Vector2(158, 360)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1ajci")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(264, 548)
+rotation = -0.136485
+
+[node name="Businessman" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(5.59554, -11.3441)
+rotation = -6.28319
+texture = ExtResource("12_rcqid")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
