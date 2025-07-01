@@ -26,9 +26,9 @@ func _process(delta: float) -> void:
 	
 	if snapping:
 		rotation = lerp_angle(rotation, final_rotation, snap_speed * delta)
-		#if rotation < 1.0 and not has_kicked:
-			#Global.businessman_kicked.emit()
-			#has_kicked = true
+		if rotation > 0.3 and not has_kicked:
+			Global.businessman_kicked.emit()
+			has_kicked = true
 		if abs(rotation - original_rotation) < 0.01:
 			rotation = original_rotation
 			snapping = false

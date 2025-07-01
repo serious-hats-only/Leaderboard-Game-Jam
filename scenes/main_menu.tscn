@@ -1,16 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=25 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bbg3kk8sn8ls6" path="res://sprites/beach_init.png" id="2_flqon"]
-[ext_resource type="Script" uid="uid://pmo5ovm36woj" path="res://scripts/main_menu_leaderboard.gd" id="3_wu84c"]
-[ext_resource type="Texture2D" uid="uid://dnr7yad0aq4ot" path="res://sprites/gnome_single.png" id="4_8ln24"]
-[ext_resource type="Shader" uid="uid://docr2xkxehvch" path="res://scripts/main_menu_gnome.gdshader" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dogwh5fqgwq8y" path="res://sprites/ICG_Logo.png" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://c53vmfsb0jfpe" path="res://sprites/tv_console_size.png" id="5_rcqid"]
+[ext_resource type="Shader" uid="uid://cfsg5rkxw4qb3" path="res://scripts/main_menu_tv.gdshader" id="7_1ajci"]
 [ext_resource type="Texture2D" uid="uid://bmmyl2olbt261" path="res://sprites/lizardKICK_BASE.png" id="7_lgwnu"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="7_tbmy8"]
 [ext_resource type="Script" uid="uid://c6q4efmitay36" path="res://scripts/grid_container.gd" id="8_jk1qb"]
 [ext_resource type="AudioStream" uid="uid://dr2eq5o7xe3x4" path="res://audio/music/Eating Sand.mp3" id="10_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://bo6068t05rp0y" path="res://sprites/lizard_arm.png" id="10_flqon"]
 [ext_resource type="PackedScene" uid="uid://4lmvq4et0ufm" path="res://prefabs/foot.tscn" id="11_flqon"]
 [ext_resource type="Texture2D" uid="uid://c1r10jxupbrr7" path="res://sprites/businessman.png" id="12_rcqid"]
 
@@ -30,31 +29,46 @@ Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7b55j"]
+shader = ExtResource("7_1ajci")
+shader_parameter/curvature = 2.0
+shader_parameter/skip = 0.0
+shader_parameter/image_flicker = 1.0
+shader_parameter/vignette_flicker_speed = 1.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/small_scanlines_speed = 1.0
+shader_parameter/small_scanlines_proximity = 1.0
+shader_parameter/small_scanlines_opacity = 1.0
+shader_parameter/scanlines_opacity = 1.0
+shader_parameter/scanlines_speed = 1.0
+shader_parameter/scanline_thickness = 0.5
+shader_parameter/scanlines_spacing = 1.0
+
 [sub_resource type="Animation" id="Animation_ekxnf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Play:position")
+tracks/0/path = NodePath("Control/Credits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1168, 273)]
+"values": [Vector2(1168, 466)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Credits:position")
+tracks/1/path = NodePath("Control/Instructions:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1168, 466)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_l6cm7"]
@@ -63,52 +77,85 @@ length = 1.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Play:position")
+tracks/0/path = NodePath("Control/Credits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.733333),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(1168, 273), Vector2(123, 273)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Credits:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.4, 1.3),
 "transitions": PackedFloat32Array(0.307786, 1),
 "update": 0,
 "values": [Vector2(1168, 466), Vector2(123, 466)]
 }
 
+[sub_resource type="Animation" id="Animation_rcqid"]
+resource_name = "instructions"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Instructions:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bqqt6"]
 _data = {
 &"RESET": SubResource("Animation_ekxnf"),
-&"button_slide": SubResource("Animation_l6cm7")
+&"button_slide": SubResource("Animation_l6cm7"),
+&"instructions": SubResource("Animation_rcqid")
 }
 
-[sub_resource type="Animation" id="Animation_rtw2f"]
+[sub_resource type="Animation" id="Animation_lgwnu"]
+resource_name = "character_kicked"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Businessman:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.363495, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.01, 0.01)]
+}
+
+[sub_resource type="Animation" id="Animation_flqon"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
+tracks/0/path = NodePath(".:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(576, 324)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/path = NodePath("Businessman:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -118,60 +165,17 @@ tracks/1/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_8ln24"]
-resource_name = "game_start"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 0.5),
-"update": 0,
-"values": [Vector2(576, 324), Vector2(876, 495)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(5.6, 5.6)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtw2f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rcqid"]
 _data = {
-&"RESET": SubResource("Animation_rtw2f"),
-&"game_start": SubResource("Animation_8ln24")
+&"RESET": SubResource("Animation_flqon"),
+&"character_kicked": SubResource("Animation_lgwnu")
 }
 
-[sub_resource type="Gradient" id="Gradient_rtw2f"]
-offsets = PackedFloat32Array(0.282258, 1)
-colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_oa1go"]
-gradient = SubResource("Gradient_rtw2f")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
-shader = ExtResource("4_rtw2f")
-shader_parameter/textureScale = Vector2(1, 1)
-shader_parameter/angle = 45.0
-shader_parameter/textureSpeed = 0.1
-shader_parameter/textureStrength = 0.5
-shader_parameter/maxLineWidth = 3.0
-shader_parameter/minLineWidth = 0.5
-shader_parameter/speed = 1.461
-shader_parameter/blockSize = 20.0
-shader_parameter/color = SubResource("GradientTexture2D_oa1go")
-shader_parameter/gradientResolution = 10
-shader_parameter/tolerance = 0.0
+[sub_resource type="Curve2D" id="Curve2D_1ajci"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 962, 610, 455.202, -83.853, -455.202, 83.853, 253, 302)
+}
+point_count = 2
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -199,15 +203,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_flqon")
-
-[node name="Play" type="Button" parent="Control"]
-visible = false
-layout_mode = 1
-offset_left = 1168.0
-offset_top = 273.0
-offset_right = 1334.0
-offset_bottom = 334.0
-text = "PLAY"
 
 [node name="Credits" type="Button" parent="Control"]
 visible = false
@@ -271,6 +266,26 @@ theme_override_constants/h_separation = 25
 columns = 3
 script = ExtResource("8_jk1qb")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Control/TV"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Control/TV/CanvasLayer"]
+material = SubResource("ShaderMaterial_7b55j")
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(168, 238, 333, 232, 494, 235, 502, 340, 498, 441, 334, 445, 164, 441, 160, 338)
+
+[node name="Instructions" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 743.0
+offset_top = 608.0
+offset_right = 920.0
+offset_bottom = 637.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_tbmy8")
+theme_override_font_sizes/font_size = 11
+text = "hold/release 'Q'"
+autowrap_mode = 2
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 
@@ -279,36 +294,40 @@ libraries = {
 &"": SubResource("AnimationLibrary_bqqt6")
 }
 
-[node name="GameStartAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BusinessmanAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Path2D/PathFollow2D")
 libraries = {
-&"": SubResource("AnimationLibrary_rtw2f")
+&"": SubResource("AnimationLibrary_rcqid")
 }
-
-[node name="GnomeSingle" type="Sprite2D" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_jk1qb")
-position = Vector2(964, 399)
-scale = Vector2(5, 5)
-texture = ExtResource("4_8ln24")
-script = ExtResource("3_wu84c")
 
 [node name="EatingSand" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_5dd4i")
 bus = &"Music"
 parameters/looping = true
 
-[node name="Businessman" type="Sprite2D" parent="."]
-position = Vector2(956, 592)
-texture = ExtResource("12_rcqid")
-
 [node name="LizardKickBase" type="Sprite2D" parent="."]
 position = Vector2(1042, 460)
 rotation = -0.22829
 texture = ExtResource("7_lgwnu")
 
+[node name="LizardArm" type="Sprite2D" parent="."]
+position = Vector2(1019, 518)
+texture = ExtResource("10_flqon")
+
 [node name="Foot" parent="." instance=ExtResource("11_flqon")]
 position = Vector2(1054, 552)
 
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1ajci")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(962, 610)
+rotation = -2.73177
+
+[node name="Businessman" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(12.6752, 14.1188)
+rotation = 2.73177
+texture = ExtResource("12_rcqid")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Credits" to="." method="_on_credits_pressed"]
