@@ -38,7 +38,6 @@ var isgrounded = false
 
 func _ready():
 	null
-#	Globals.player = self
 
 func _physics_process(delta):
 	
@@ -75,6 +74,8 @@ func handle_groups(groups):
 			just_broke = true
 			broke.play()
 			var confetti_instance = confetti.instantiate()
+			Global.speedrun_time = (float(Global.speedrun_time) - 0.1)
+			print (Global.speedrun_time)
 			# Get the actual GPUParticles2D node
 			var particles = confetti_instance.get_node("GPUParticles2D")
 			particles.one_shot = true
@@ -167,6 +168,7 @@ func move(delta):
 		elif not is_on_floor() and can_jump:
 			if Input.is_action_just_pressed("move_up"):
 				velocity.y = -jump_force * 1.5
+				jump.play()
 				can_jump = false
 
 			if is_on_floor(): #Dust when jumping
