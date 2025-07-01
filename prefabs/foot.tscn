@@ -1,18 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://4lmvq4et0ufm"]
 
 [ext_resource type="Script" uid="uid://c1q337c8ae3v" path="res://scripts/foot_kick.gd" id="1_fgi7n"]
-[ext_resource type="Texture2D" uid="uid://db6bpv5dqnjaj" path="res://sprites/foot.png" id="1_xokgj"]
+[ext_resource type="Texture2D" uid="uid://bc7j01js681u6" path="res://sprites/lizards_foot.png" id="2_fgi7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgi7n"]
 radius = 5.0
 
 [node name="Foot" type="Area2D"]
-scale = Vector2(1.25, 1.25)
 script = ExtResource("1_fgi7n")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_xokgj")
-offset = Vector2(8, 86)
+texture = ExtResource("2_fgi7n")
+offset = Vector2(-12, 46)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(56, 161)

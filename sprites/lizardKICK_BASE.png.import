@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgorhdq2j2wib"
-path="res://.godot/imported/title_placeholder.png-f54ae01d5372dbc605a8af35d68cf22c.ctex"
+uid="uid://bmmyl2olbt261"
+path="res://.godot/imported/lizardKICK_BASE.png-ad3b86bdcc6f81c44051bc0b49ef67b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/title_placeholder.png"
-dest_files=["res://.godot/imported/title_placeholder.png-f54ae01d5372dbc605a8af35d68cf22c.ctex"]
+source_file="res://sprites/lizardKICK_BASE.png"
+dest_files=["res://.godot/imported/lizardKICK_BASE.png-ad3b86bdcc6f81c44051bc0b49ef67b6.ctex"]
 
 [params]
 

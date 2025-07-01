@@ -2,7 +2,6 @@ extends Control
 
 @onready var button_animation_player: AnimationPlayer = $ButtonAnimationPlayer
 @onready var game_start_animation_player: AnimationPlayer = $GameStartAnimationPlayer
-@onready var businessman_animation_player: AnimationPlayer = $BusinessmanAnimationPlayer
 @onready var eating_sand: AudioStreamPlayer2D = $EatingSand
 @onready var icg_logo: Sprite2D = $Control/ICGLogo
 
@@ -18,8 +17,8 @@ func _input(event: InputEvent) -> void:
 		icg_logo.visible = false
 
 func into_tv():
-	businessman_animation_player.play("character_kicked")
-	await businessman_animation_player.animation_finished
+	#businessman_animation_player.play("character_kicked")
+	#await businessman_animation_player.animation_finished
 	Global.display_speedrun_timer = true
 	Global.speedrun_time = 0
 	get_tree().change_scene_to_file("res://scenes/level.tscn")
