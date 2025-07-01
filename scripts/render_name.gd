@@ -57,10 +57,7 @@ func convert_string_to_rigidbody():
 			char = text[bodies.size()]
 		#print("char " + char)
 		var char_rigid = null
-		if char == 'G' || char == 'N':
-			char_rigid = char_area.instantiate()
-		else:
-			char_rigid = char_rigid_body.instantiate()
+		char_rigid = char_rigid_body.instantiate()
 		for i in poly.size():
 			poly[i] -= size/2.0
 		char_rigid.get_child(0).polygon = poly

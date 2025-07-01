@@ -6,6 +6,9 @@ extends CharacterBody2D
 
 @export var speed = 100
 var acceleration = 500
+var is_slippy = false
+var default_friction = 250
+var ice_friction = 25
 var friction = 250
 var grounded = false
 var launched = false
@@ -55,16 +58,20 @@ func _physics_process(delta):
 		get_parent().add_child(instance)
 		land.play()
 		
+var bouncy_chars = ['B', '0', 'D', '6', 'P', '8']
+var breaky_chars = ['A', 'X', '9', 'K']  
+var slippy_chars = ['C', 'I', '1', 'O', 'S']
+
 func handle_groups(groups):
 	for g in groups:
 		if g == 'G':
 			print("G")
-		elif g == 'B' or g == '0': #TODO add more and make this not specific to B
+		elif bouncy_chars.find(g) >= 0:
 			bounce.play()
 			#velocity.y = -2*jump_force
 			launched = true
 			just_launched = true
-		elif g == 'A':
+		elif breaky_chars.find(g) >= 0:
 			just_broke = true
 			broke.play()
 			var confetti_instance = confetti.instantiate()
@@ -78,6 +85,9 @@ func handle_groups(groups):
 			# Remove after particle lifetime
 			await get_tree().create_timer(particles.lifetime).timeout
 			confetti_instance.queue_free()
+		elif slippy_chars.find(g) >= 0:
+			is_slippy = true
+			
 						
 
 func move(delta):
@@ -117,6 +127,7 @@ func move(delta):
 		#	if just_launched:
 		#		velocity.y = -2*jump_force
 
+		is_slippy = false
 		var collisions = get_slide_collision_count()
 		for i in range(collisions):
 			var c = get_slide_collision(i)
@@ -136,7 +147,12 @@ func move(delta):
 			#	if c.get_collider().get_parent() is GeneratedTextSprite:
 			#		var plat = c.get_collider().get_parent() as GeneratedTextSprite
 					#velocity.x += plat.move_speed
-
+		
+		if is_slippy:
+			friction = ice_friction
+		else:
+			friction = default_friction
+			
 		if not is_on_floor() and launched:
 			$AnimatedSprite2D.rotate((PI/2.0)*delta)
 		else:

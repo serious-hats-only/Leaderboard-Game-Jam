@@ -5,9 +5,26 @@ extends Node2D
 var player_list_with_pos = []
 
 var char_colors = {
-	'0' = 'red',
-	'B' = 'green',
-	'A' = 'FFFF00'
+	# Red platforms - bouncy
+	'0': 'red',
+	'B': 'red',
+	'D': 'red',
+	'6': 'red',
+	'P': 'red',
+	'8': 'red',
+	
+	# Yellow platforms - breaky
+	'A': 'FFFF00',
+	'X': 'FFFF00',
+	'9': 'FFFF00',
+	'K': 'FFFF00',
+	
+	# Light blue platforms - slippy
+	'C': 'lightblue',
+	'I': 'lightblue',
+	'1': 'lightblue',
+	'O': 'lightblue',
+	'S': 'lightblue',
 }
 
 func _ready() -> void:
