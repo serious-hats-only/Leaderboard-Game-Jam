@@ -36,7 +36,6 @@ var isgrounded = false
 #Music
 @onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
 @onready var Beach: AudioStreamPlayer2D = $Music/Beach
-@onready var Disco: AudioStreamPlayer2D = $Music/Disco
 @onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
 
 @export var confetti = preload("res://scenes/confetti.tscn")

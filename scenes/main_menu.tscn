@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=28 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bbg3kk8sn8ls6" path="res://sprites/beach_init.png" id="2_flqon"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bo6068t05rp0y" path="res://sprites/lizard_arm.png" id="10_flqon"]
 [ext_resource type="PackedScene" uid="uid://4lmvq4et0ufm" path="res://prefabs/foot.tscn" id="11_flqon"]
 [ext_resource type="Texture2D" uid="uid://c1r10jxupbrr7" path="res://sprites/businessman.png" id="12_rcqid"]
+[ext_resource type="Script" uid="uid://bwfjwb5164g7s" path="res://scripts/trail_line.gd" id="13_rcqid"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbmy8"]
 font = ExtResource("7_tbmy8")
@@ -177,6 +178,14 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_rcqid"]
+_data = [Vector2(0.00318471, 0.0345712), 0.0, 0.0, 0, 0, Vector2(0.993631, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_rcqid"]
+offsets = PackedFloat32Array(0, 0.304348, 0.626812, 0.92029)
+colors = PackedColorArray(0.827451, 0, 0, 0.392157, 0.890196, 0.929412, 0.352941, 0.392157, 0.0235294, 0.815686, 0.815686, 0.392157, 0.52549, 0.0509804, 0.639216, 0.392157)
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -287,6 +296,7 @@ text = "hold/release 'Q'"
 autowrap_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(576, 324)
 
 [node name="ButtonAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -328,6 +338,12 @@ rotation = -2.73177
 position = Vector2(12.6752, 14.1188)
 rotation = 2.73177
 texture = ExtResource("12_rcqid")
+
+[node name="trail_line" type="Line2D" parent="Path2D/PathFollow2D/Businessman"]
+top_level = true
+width_curve = SubResource("Curve_rcqid")
+gradient = SubResource("Gradient_rcqid")
+script = ExtResource("13_rcqid")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Control/Credits" to="." method="_on_credits_pressed"]

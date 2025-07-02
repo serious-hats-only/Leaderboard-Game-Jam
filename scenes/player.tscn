@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://08gvqyw16aqo"]
+[gd_scene load_steps=39 format=3 uid="uid://08gvqyw16aqo"]
 
 [ext_resource type="Script" uid="uid://die87sw6agnes" path="res://scripts/player.gd" id="1_bdmgi"]
 [ext_resource type="AudioStream" uid="uid://dadsdlg5hmxtf" path="res://audio/sfx/GGA_BugBounce.mp3" id="2_fjrip"]
@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://bbkxy1eklenwo" path="res://audio/music/MagicalGnomeShower.mp3" id="11_f1ej7"]
 [ext_resource type="AudioStream" uid="uid://d2tuf2bi4r3ke" path="res://audio/music/TLABAE.mp3" id="12_oprun"]
 [ext_resource type="AudioStream" uid="uid://bq7vxiky1p1rq" path="res://audio/music/Beach.mp3" id="13_a8ls1"]
-[ext_resource type="AudioStream" uid="uid://b2uy6jruahm6p" path="res://audio/music/Disco_sample.mp3" id="14_qfm1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f16f4"]
 size = Vector2(57, 89)
@@ -271,8 +270,4 @@ bus = &"Music"
 
 [node name="Beach" type="AudioStreamPlayer2D" parent="Music"]
 stream = ExtResource("13_a8ls1")
-bus = &"Music"
-
-[node name="Disco" type="AudioStreamPlayer2D" parent="Music"]
-stream = ExtResource("14_qfm1y")
 bus = &"Music"
