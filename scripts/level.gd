@@ -6,10 +6,6 @@ var score = 0
 
 var run_is_complete = false
 
-@onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
-@onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
-@onready var Beach: AudioStreamPlayer2D = $Music/Beach
-@onready var Disco: AudioStreamPlayer2D = $Music/Disco
 @onready var player: Player = $player
 @onready var get_player_name: Control = $Control/GetPlayerName
 
