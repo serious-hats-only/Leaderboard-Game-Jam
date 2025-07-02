@@ -37,6 +37,7 @@ var isgrounded = false
 @onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
 @onready var Beach: AudioStreamPlayer2D = $Music/Beach
 @onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
+var music_randomizer = randi_range(1, 2)
 
 @export var confetti = preload("res://scenes/confetti.tscn")
 
@@ -49,7 +50,10 @@ var isgrounded = false
 
 
 func _ready():
-	gnome_shower.play()
+	if music_randomizer == 1:
+		gnome_shower.play()
+	else:
+		TLABAE.play()
 	
 func powerup_background():
 	var level = get_tree().current_scene
@@ -105,6 +109,8 @@ func start_hotdog_powerup(duration: float):
 	# Stop current music and play hotdog powerup music
 	if gnome_shower.playing:
 		gnome_shower.stop()
+	else:
+		TLABAE.stop()
 	Beach.play()
 
 	call_deferred("powerup_background")
@@ -131,7 +137,10 @@ func _end_hotdog_powerup():
 	# Stop hotdog music
 	Beach.stop()
 	
-	gnome_shower.play()
+	if music_randomizer == 1:
+		gnome_shower.play()
+	else:
+		TLABAE.play()
 	call_deferred("powerup_background")
 	#background.visible = true
 	#$PixelRain.visible = false
