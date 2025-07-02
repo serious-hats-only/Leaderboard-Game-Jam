@@ -40,6 +40,7 @@ var isgrounded = false
 var music_randomizer = randi_range(1, 2)
 
 @export var confetti = preload("res://scenes/confetti.tscn")
+@export var time_reduction: PackedScene
 
 # audio references
 @onready var bounce: AudioStreamPlayer2D = $Audio/Bounce
@@ -162,8 +163,11 @@ func handle_groups(groups):
 		elif breaky_chars.find(g) >= 0:
 			just_broke = true
 			broke.play()
+			var time_reduction_instance = time_reduction.instantiate()
+			get_tree().current_scene.add_child(time_reduction_instance)
+			time_reduction_instance.global_position = self.global_position
 			var confetti_instance = confetti.instantiate()
-			Global.speedrun_time = (float(Global.speedrun_time) - 0.1)
+			Global.speedrun_time = (float(Global.speedrun_time) - 5.0)
 			print (Global.speedrun_time)
 			# Get the actual GPUParticles2D node
 			var particles = confetti_instance.get_node("GPUParticles2D")
