@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=29 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bbg3kk8sn8ls6" path="res://sprites/beach_init.png" id="2_flqon"]
@@ -13,12 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://4lmvq4et0ufm" path="res://prefabs/foot.tscn" id="11_flqon"]
 [ext_resource type="Texture2D" uid="uid://c1r10jxupbrr7" path="res://sprites/businessman.png" id="12_rcqid"]
 [ext_resource type="Script" uid="uid://bwfjwb5164g7s" path="res://scripts/trail_line.gd" id="13_rcqid"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_tbmy8"]
-font = ExtResource("7_tbmy8")
-font_size = 36
-outline_size = 15
-outline_color = Color(0.262932, 0.262932, 0.262932, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -44,6 +38,19 @@ shader_parameter/scanlines_opacity = 1.0
 shader_parameter/scanlines_speed = 1.0
 shader_parameter/scanline_thickness = 0.5
 shader_parameter/scanlines_spacing = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcqid"]
+bg_color = Color(0.278431, 0.278431, 0.278431, 0.403922)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbmy8"]
+font = ExtResource("7_tbmy8")
+font_size = 36
+outline_size = 15
+outline_color = Color(0.262932, 0.262932, 0.262932, 1)
 
 [sub_resource type="Animation" id="Animation_ekxnf"]
 length = 0.001
@@ -222,17 +229,6 @@ offset_right = 1334.0
 offset_bottom = 527.0
 text = "CREDITS"
 
-[node name="Title" type="Label" parent="Control"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 565.0
-offset_top = 44.0
-offset_right = 1143.0
-offset_bottom = 433.0
-text = "a magic lizard kicked me into a tv and now i'm a gnome who has to climb a leaderboard"
-label_settings = SubResource("LabelSettings_tbmy8")
-autowrap_mode = 2
-
 [node name="ICGLogo" type="Sprite2D" parent="Control"]
 visible = false
 position = Vector2(919, 114)
@@ -293,6 +289,37 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("7_tbmy8")
 theme_override_font_sizes/font_size = 11
 text = "hold/release 'Q'"
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 534.0
+offset_top = 36.0
+offset_right = -8.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rcqid")
+
+[node name="Title" type="Label" parent="Control/Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -149.5
+offset_right = 306.0
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "a magic lizard kicked me into a tv and now i'm a gnome who has to climb a leaderboard"
+label_settings = SubResource("LabelSettings_tbmy8")
 autowrap_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
