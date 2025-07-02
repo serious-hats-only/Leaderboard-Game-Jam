@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhffpxgbfp1br"]
 
-[ext_resource type="Texture2D" uid="uid://yl0u4ogg6jkr" path="res://sprites/hotdog.png" id="1_8w6f3"]
+[ext_resource type="Texture2D" uid="uid://dpbcy8v5ebuu2" path="res://sprites/hotdog2.png" id="1_6bj0o"]
 [ext_resource type="Texture2D" uid="uid://cpdg5yj0458hw" path="res://sprites/brown_rat.png" id="2_6bj0o"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6bj0o"]
@@ -12,19 +12,18 @@ particles_anim_loop = false
 [node name="PixelRain" type="Node2D"]
 
 [node name="HotDogRain" type="CPUParticles2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.329412)
 z_index = -5
 material = SubResource("CanvasItemMaterial_6bj0o")
 position = Vector2(1527, 1076)
 amount = 75
-texture = ExtResource("1_8w6f3")
+texture = ExtResource("1_6bj0o")
 lifetime = 13.63
 preprocess = 7.16
 use_fixed_seed = true
 seed = 1
 emission_shape = 3
-emission_rect_extents = Vector2(10000, 0)
+emission_rect_extents = Vector2(10000, 10000)
 direction = Vector2(100, 100)
 spread = 147.72
 gravity = Vector2(30, 60)
@@ -32,9 +31,12 @@ linear_accel_min = 51.52
 linear_accel_max = 51.52
 angle_min = 7.3
 angle_max = 14.5
+scale_amount_min = 2.0
+scale_amount_max = 2.0
 anim_speed_max = 112.48
 
 [node name="RatRain" type="CPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.329412)
 z_index = -5
 material = SubResource("CanvasItemMaterial_6bj0o")

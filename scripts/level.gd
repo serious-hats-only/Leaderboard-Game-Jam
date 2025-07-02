@@ -15,8 +15,7 @@ var run_is_complete = false
 
 func _ready():
 	Global.score_submitted.connect(score_submitted_restart)
-	gnome_shower.play()
-
+	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

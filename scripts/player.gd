@@ -4,7 +4,14 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 #@export var ui: UI
 
-@export var speed = 100
+#Hotdog powerup
+@export var normal_speed = 100.0
+var is_hotdog_active = false
+var hotdog_timer: Timer
+#var level = get_tree().current_scene
+#var background = level.get_node("Terrain/Background")
+
+@export var speed = normal_speed
 var acceleration = 500
 var is_slippy = false
 var default_friction = 250
@@ -26,6 +33,12 @@ var isgrounded = false
 @export var gravity = 20.0
 @export var jump_force = 250.0
 
+#Music
+@onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
+@onready var Beach: AudioStreamPlayer2D = $Music/Beach
+@onready var Disco: AudioStreamPlayer2D = $Music/Disco
+@onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
+
 @export var confetti = preload("res://scenes/confetti.tscn")
 
 # audio references
@@ -37,7 +50,21 @@ var isgrounded = false
 
 
 func _ready():
-	null
+	gnome_shower.play()
+	
+func powerup_background():
+	var level = get_tree().current_scene
+	if level and level.has_node("Terrain/Background") and level.has_node("LeaderboardViewports/PixelRain"):
+		var background = level.get_node("Terrain/Background")
+		var pixelrain = level.get_node("LeaderboardViewports/PixelRain")
+
+		# Toggle Background visibility
+		background.visible = not background.visible
+
+		# PixelRain is always the opposite of Background
+		pixelrain.visible = not background.visible
+	else:
+		print("❌ Terrain/Background or PixelRain not found or scene not ready")
 
 func _physics_process(delta):
 	
@@ -61,6 +88,60 @@ var bouncy_chars = ['B', '0', 'D', '6', 'P', '8']
 var breaky_chars = ['A', 'X', '9', 'K']  
 var slippy_chars = ['C', 'I', '1', 'O', 'S']
 
+#Power-Up Function
+func apply_powerup(type: String, value: float):
+	match type:
+		"hotdog":
+			if not is_hotdog_active:
+				start_hotdog_powerup(value)
+				print("Unknown powerup type:", type)
+
+func start_hotdog_powerup(duration: float):
+	is_hotdog_active = true
+
+	# Increase speed
+	speed *= 4
+
+	
+	# Stop current music and play hotdog powerup music
+	if gnome_shower.playing:
+		gnome_shower.stop()
+	Beach.play()
+
+	call_deferred("powerup_background")
+	
+	# Add pixel rain effect
+	#$PixelRain.visible = true
+	#background.visible = false
+	
+	#pixel_rain_instance = pixel_rain_scene.instantiate()
+	#add_child(pixel_rain_instance)
+	#pixel_rain_instance.position = Vector2.ZERO  # or adjust as needed
+	# Setup and start timer to end the powerup
+	hotdog_timer = Timer.new()
+	hotdog_timer.wait_time = duration
+	hotdog_timer.one_shot = true
+	hotdog_timer.timeout.connect(_end_hotdog_powerup)
+	add_child(hotdog_timer)
+	hotdog_timer.start()
+
+func _end_hotdog_powerup():
+	speed = normal_speed
+	is_hotdog_active = false
+
+	# Stop hotdog music
+	Beach.stop()
+	
+	gnome_shower.play()
+	call_deferred("powerup_background")
+	#background.visible = true
+	#$PixelRain.visible = false
+	# Remove pixel rain effect
+	#if pixel_rain_instance:
+	#	pixel_rain_instance.queue_free()
+	#	pixel_rain_instance = null
+
+		
 func handle_groups(groups):
 	for g in groups:
 		if g == 'G':

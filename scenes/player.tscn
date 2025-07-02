@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://08gvqyw16aqo"]
+[gd_scene load_steps=40 format=3 uid="uid://08gvqyw16aqo"]
 
 [ext_resource type="Script" uid="uid://die87sw6agnes" path="res://scripts/player.gd" id="1_bdmgi"]
 [ext_resource type="AudioStream" uid="uid://dadsdlg5hmxtf" path="res://audio/sfx/GGA_BugBounce.mp3" id="2_fjrip"]
@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://do42msaayl1n7" path="res://sprites/gnome_walk.png" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://edbl28eg5wmq" path="res://audio/sfx/GGA_Land.wav" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://dyahtpfw2g4l5" path="res://sprites/gnome_sink.png" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://bbkxy1eklenwo" path="res://audio/music/MagicalGnomeShower.mp3" id="11_f1ej7"]
+[ext_resource type="AudioStream" uid="uid://d2tuf2bi4r3ke" path="res://audio/music/TLABAE.mp3" id="12_oprun"]
+[ext_resource type="AudioStream" uid="uid://bq7vxiky1p1rq" path="res://audio/music/Beach.mp3" id="13_a8ls1"]
+[ext_resource type="AudioStream" uid="uid://b2uy6jruahm6p" path="res://audio/music/Disco_sample.mp3" id="14_qfm1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f16f4"]
 size = Vector2(57, 89)
@@ -205,7 +209,6 @@ animations = [{
 
 [node name="player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_bdmgi")
-speed = 200
 
 [node name="Audio" type="Node2D" parent="."]
 
@@ -253,3 +256,23 @@ points = PackedVector2Array(0, 0, 0, 70)
 [node name="Marker2D" type="Marker2D" parent="."]
 z_index = 1
 position = Vector2(0, 54)
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="Gnome_Shower" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("11_f1ej7")
+max_distance = 100000.0
+attenuation = 0.0
+bus = &"Music"
+
+[node name="TLABAE" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("12_oprun")
+bus = &"Music"
+
+[node name="Beach" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("13_a8ls1")
+bus = &"Music"
+
+[node name="Disco" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("14_qfm1y")
+bus = &"Music"
