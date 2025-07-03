@@ -13,7 +13,7 @@ var run_is_complete = false
 
 func _ready():
 	Global.score_submitted.connect(score_submitted_restart)
-	powerup_base.global_position = Vector2(randi_range(40, 1047), randi_range(-1120, 0))
+	powerup_base.global_position = Vector2(randi_range(40, 1047), randi_range(-900, -100))
 	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("restart") and !run_is_complete:
