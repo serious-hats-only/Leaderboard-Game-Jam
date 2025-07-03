@@ -54,6 +54,7 @@ var music_randomizer = randi_range(1, 2)
 @onready var land: AudioStreamPlayer2D = $Audio/Land
 @onready var blast: AudioStreamPlayer2D = $Audio/Cannon_Blast
 @onready var charge: AudioStreamPlayer2D = $Audio/Charge
+@onready var coin: AudioStreamPlayer2D = $Audio/Coin
 
 func _ready():
 	if music_randomizer == 1:
@@ -235,6 +236,7 @@ func handle_groups(groups):
 		elif breaky_chars.find(g) >= 0:
 			just_broke = true
 			broke.play()
+			coin.play()
 			var time_reduction_instance = time_reduction.instantiate()
 			get_tree().current_scene.add_child(time_reduction_instance)
 			time_reduction_instance.global_position = self.global_position
