@@ -122,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_g4s6y")
-text = "- 5 sec"
+text = "- 1 sec"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -167,7 +167,8 @@ func handle_groups(groups):
 			get_tree().current_scene.add_child(time_reduction_instance)
 			time_reduction_instance.global_position = self.global_position
 			var confetti_instance = confetti.instantiate()
-			Global.speedrun_time = (float(Global.speedrun_time) - 5.0)
+			Global.speedrun_time = (float(Global.speedrun_time) - 1.0)
+			Global.time_minus.emit()
 			print (Global.speedrun_time)
 			# Get the actual GPUParticles2D node
 			var particles = confetti_instance.get_node("GPUParticles2D")
