@@ -40,6 +40,7 @@ var isgrounded = false
 #Music
 @onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
 @onready var Beach: AudioStreamPlayer2D = $Music/Beach
+@onready var Wave: AudioStreamPlayer2D = $Music/wave
 @onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
 var music_randomizer = randi_range(1, 2)
 
@@ -140,7 +141,11 @@ func start_deepdish_powerup(duration: float):
 	velocity = Vector2.ZERO
 
 	call_deferred("powerup_background", "deepdish")
-	
+	if gnome_shower.playing:
+		gnome_shower.stop()
+	else:
+		TLABAE.stop()
+	Wave.play()
 	# Wait for animation and launch cannon
 	await sprite.animation_finished
 	cannon_launch()
@@ -156,6 +161,11 @@ func cannon_launch():
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
 	Global.player_can_move = true
+	Wave.stop()
+	if music_randomizer == 1:
+		gnome_shower.play()
+	else:
+		TLABAE.play()
 
 	# Schedule a timer or await floor contact
 	await get_tree().create_timer(0.1).timeout  # stay intangible for 0.8 seconds
