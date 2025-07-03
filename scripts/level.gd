@@ -16,7 +16,7 @@ func _ready():
 	powerup_base.global_position = Vector2(randi_range(40, 1047), randi_range(-1120, 0))
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("restart"):
+	if Input.is_action_just_pressed("restart") and !run_is_complete:
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_back_pressed() -> void:
