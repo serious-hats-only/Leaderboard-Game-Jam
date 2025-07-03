@@ -237,7 +237,7 @@ func move(delta):
 			# if launched and hackily check if it's a character
 			elif just_broke:# or (launched and groups.size() > 0 and groups[0].length() == 1): 		
 				c.get_collider().get_parent().queue_free()
-				
+				$Camera2D.start_shake(4.0)  # Adjust intensity
 				just_broke = false
 			#elif groups.size() > 0 and groups[0].length() == 1:
 			#	if c.get_collider().get_parent() is GeneratedTextSprite:
