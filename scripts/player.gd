@@ -11,7 +11,7 @@ var hotdog_timer: Timer
 
 #Deep Dish Powerup 
 var is_deepdish_active = false 
-
+var in_cannon_mode = false
 #var level = get_tree().current_scene
 #var background = level.get_node("Terrain/Background")
 
@@ -51,9 +51,8 @@ var music_randomizer = randi_range(1, 2)
 @onready var broke: AudioStreamPlayer2D = $Audio/Broke
 @onready var jump: AudioStreamPlayer2D = $Audio/Jump
 @onready var land: AudioStreamPlayer2D = $Audio/Land
-
-#Cannon sound?
-
+@onready var blast: AudioStreamPlayer2D = $Audio/Cannon_Blast
+@onready var charge: AudioStreamPlayer2D = $Audio/Charge
 
 func _ready():
 	if music_randomizer == 1:
@@ -61,7 +60,7 @@ func _ready():
 	else:
 		TLABAE.play()
 	
-func powerup_background():
+func powerup_background(rain_type: String = ""):
 	var level = get_tree().current_scene
 	if level and level.has_node("Terrain/Background") and level.has_node("LeaderboardViewports/PixelRain") and level.has_node("Terrain/Space"):
 		var background = level.get_node("Terrain/Background")
@@ -69,10 +68,31 @@ func powerup_background():
 		var spacebackground = level.get_node("Terrain/Space")
 		# Toggle Background visibility
 		background.visible = not background.visible
-
-		# PixelRain is always the opposite of Background
-		pixelrain.visible = not background.visible
 		spacebackground.visible = not background.visible
+		
+		# Show PixelRain opposite to background
+		pixelrain.visible = not background.visible
+		
+		# Now toggle specific rain inside PixelRain:
+		var hotdog_rain = pixelrain.get_node("HotDogRain")
+		var pizza_rain = pixelrain.get_node("PizzaRain")
+		
+		if rain_type == "hotdog":
+			hotdog_rain.visible = true
+			hotdog_rain.emitting = true
+			pizza_rain.visible = false
+			pizza_rain.emitting = false
+		elif rain_type == "deepdish":
+			hotdog_rain.visible = false
+			hotdog_rain.emitting = false
+			pizza_rain.visible = true
+			pizza_rain.emitting = true
+		else:
+			# If no rain type or unknown, hide both
+			hotdog_rain.visible = false
+			hotdog_rain.emitting = false
+			pizza_rain.visible = false
+			pizza_rain.emitting = false
 	else:
 		print("❌ Terrain/Background or PixelRain not found or scene not ready")
 
@@ -107,29 +127,56 @@ func apply_powerup(type: String, value: float):
 				print("Unknown powerup type:", type)
 		"deepdish":
 			if not is_deepdish_active:
-				start_hotdog_powerup(value)
+				start_deepdish_powerup(value)
 				print("Unknown powerup type:", type)
 			
 
 func start_deepdish_powerup(duration: float):
 	is_deepdish_active = true
+	in_cannon_mode = true
 	sprite.play("cannon")
+	charge.play()
+	
+	velocity = Vector2.ZERO
 
+	call_deferred("powerup_background", "deepdish")
+	
+	# Wait for animation and launch cannon
+	await sprite.animation_finished
+	cannon_launch()
+
+func cannon_launch():
+	velocity.y = -jump_force * 10  # big upward blast
+	blast.play()
+	in_cannon_mode = false
+	Global.player_can_move = true  # Reenable controls
+	$Camera2D.start_shake(10.0)  # Adjust intensity
+	
+	# Disable collisions while in air
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	Global.player_can_move = true
+
+	# Schedule a timer or await floor contact
+	await get_tree().create_timer(0.1).timeout  # stay intangible for 0.8 seconds
+
+	set_collision_layer_value(1, true)
+	set_collision_mask_value(1, true)
+	Global.player_can_move = true
+	call_deferred("powerup_background", "") # hide rain effects and reset background visibility
+	
 func start_hotdog_powerup(duration: float):
 	is_hotdog_active = true
-
-	# Increase speed
 	speed *= 4
 
-	
-	# Stop current music and play hotdog powerup music
 	if gnome_shower.playing:
 		gnome_shower.stop()
 	else:
 		TLABAE.stop()
 	Beach.play()
 
-	call_deferred("powerup_background")
+	call_deferred("powerup_background", "hotdog")
+	
 	
 	# Add pixel rain effect
 	#$PixelRain.visible = true
@@ -157,7 +204,7 @@ func _end_hotdog_powerup():
 		gnome_shower.play()
 	else:
 		TLABAE.play()
-	call_deferred("powerup_background")
+	call_deferred("powerup_background", "") # hide rain effects and reset background visibility
 	#background.visible = true
 	#$PixelRain.visible = false
 	# Remove pixel rain effect
@@ -201,6 +248,12 @@ func handle_groups(groups):
 						
 
 func move(delta):
+	if in_cannon_mode:
+		velocity.y += gravity
+		velocity.x = 0  # prevent drift
+		move_and_slide()
+		return
+		
 	if Global.player_can_move:
 		# Visuals
 		var horz_move = Input.get_axis("move_left", "move_right")

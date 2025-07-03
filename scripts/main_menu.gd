@@ -16,6 +16,11 @@ func _input(event: InputEvent) -> void:
 		icg_logo.visible = true
 	if Input.is_action_just_released("CTLG"):
 		icg_logo.visible = false
+	if Input.is_action_pressed("story_mode"):
+		get_tree().change_scene_to_file("res://scenes/storymode.tscn")
+	if Input.is_action_pressed("credits"):
+		get_tree().change_scene_to_file("res://scenes/credits.tscn")
+			
 
 func into_tv():
 	businessman_animation_player.play("character_kicked")
