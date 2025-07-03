@@ -3,6 +3,7 @@ extends Control
 @onready var button_animation_player: AnimationPlayer = $ButtonAnimationPlayer
 @onready var businessman_animation_player: AnimationPlayer = $BusinessmanAnimationPlayer
 @onready var eating_sand: AudioStreamPlayer2D = $EatingSand
+@onready var impact: AudioStreamPlayer = $Impact
 @onready var icg_logo: Sprite2D = $Control/ICGLogo
 
 
@@ -18,6 +19,7 @@ func _input(event: InputEvent) -> void:
 
 func into_tv():
 	businessman_animation_player.play("character_kicked")
+	impact.play()
 	await businessman_animation_player.animation_finished
 	Global.display_speedrun_timer = true
 	Global.speedrun_time = 0

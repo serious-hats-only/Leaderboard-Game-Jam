@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=30 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bbg3kk8sn8ls6" path="res://sprites/beach_init.png" id="2_flqon"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmmyl2olbt261" path="res://sprites/lizardKICK_BASE.png" id="7_lgwnu"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="7_tbmy8"]
 [ext_resource type="Script" uid="uid://c6q4efmitay36" path="res://scripts/grid_container.gd" id="8_jk1qb"]
+[ext_resource type="AudioStream" uid="uid://bet4qrbajs544" path="res://audio/sfx/GGA_SpeedJam_Impact (1).wav" id="9_1ajci"]
 [ext_resource type="AudioStream" uid="uid://dr2eq5o7xe3x4" path="res://audio/music/Eating Sand.mp3" id="10_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://bo6068t05rp0y" path="res://sprites/lizard_arm.png" id="10_flqon"]
 [ext_resource type="PackedScene" uid="uid://4lmvq4et0ufm" path="res://prefabs/foot.tscn" id="11_flqon"]
@@ -341,6 +342,11 @@ libraries = {
 stream = ExtResource("10_5dd4i")
 bus = &"Music"
 parameters/looping = true
+
+[node name="Impact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1ajci")
+volume_db = -10.0
+bus = &"SFX"
 
 [node name="LizardKickBase" type="Sprite2D" parent="."]
 position = Vector2(1042, 460)
