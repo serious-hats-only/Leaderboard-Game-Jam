@@ -23,6 +23,7 @@ func into_tv():
 	await businessman_animation_player.animation_finished
 	Global.display_speedrun_timer = true
 	Global.speedrun_time = 0
+	Global.player_can_move = true
 	get_tree().change_scene_to_file("res://scenes/level.tscn")
 
 func _on_ready() -> void:
