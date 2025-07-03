@@ -12,6 +12,10 @@ var hotdog_timer: Timer
 #Deep Dish Powerup 
 var is_deepdish_active = false 
 var in_cannon_mode = false
+
+#Mustard Powerup
+var is_mustard_active = false 
+
 #var level = get_tree().current_scene
 #var background = level.get_node("Terrain/Background")
 
@@ -75,7 +79,7 @@ func powerup_background(rain_type: String = ""):
 		# Show PixelRain opposite to background
 		pixelrain.visible = not background.visible
 		
-		# Now toggle specific rain inside PixelRain:
+		# Toggle specific rain inside PixelRain:
 		var hotdog_rain = pixelrain.get_node("HotDogRain")
 		var pizza_rain = pixelrain.get_node("PizzaRain")
 		
@@ -96,7 +100,7 @@ func powerup_background(rain_type: String = ""):
 			pizza_rain.visible = false
 			pizza_rain.emitting = false
 	else:
-		print("❌ Terrain/Background or PixelRain not found or scene not ready")
+		print("Terrain/Background or PixelRain not found or scene not ready")
 
 func _physics_process(delta):
 	
@@ -131,6 +135,9 @@ func apply_powerup(type: String, value: float):
 			if not is_deepdish_active:
 				start_deepdish_powerup(value)
 				print("Unknown powerup type:", type)
+		"mustard":
+			if not is_mustard_active:
+				null
 			
 
 func start_deepdish_powerup(duration: float):
