@@ -39,7 +39,7 @@ var isgrounded = false
 @onready var shape = collision_shape.shape
 @onready var dust = preload("res://scenes/dust.tscn")
 @export var gravity = 20.0
-@export var jump_force = 250.0
+@export var jump_force = 600.0
 
 #Music
 @onready var TLABAE: AudioStreamPlayer2D = $Music/TLABAE
@@ -82,23 +82,38 @@ func powerup_background(rain_type: String = ""):
 		# Toggle specific rain inside PixelRain:
 		var hotdog_rain = pixelrain.get_node("HotDogRain")
 		var pizza_rain = pixelrain.get_node("PizzaRain")
+		var mustard_rain = pixelrain.get_node("MustardRain")
 		
 		if rain_type == "hotdog":
 			hotdog_rain.visible = true
 			hotdog_rain.emitting = true
 			pizza_rain.visible = false
 			pizza_rain.emitting = false
+			mustard_rain.visible = false
+			mustard_rain.emitting = false
 		elif rain_type == "deepdish":
 			hotdog_rain.visible = false
 			hotdog_rain.emitting = false
 			pizza_rain.visible = true
 			pizza_rain.emitting = true
+			mustard_rain.visible = false
+			mustard_rain.emitting = false
+		elif rain_type == "mustard":
+			hotdog_rain.visible = false
+			hotdog_rain.emitting = false
+			pizza_rain.visible = false
+			pizza_rain.emitting = false
+			mustard_rain.visible = true
+			mustard_rain.emitting = true 
 		else:
 			# If no rain type or unknown, hide both
 			hotdog_rain.visible = false
 			hotdog_rain.emitting = false
 			pizza_rain.visible = false
 			pizza_rain.emitting = false
+			mustard_rain.visible = false
+			mustard_rain.emitting = false 
+
 	else:
 		print("Terrain/Background or PixelRain not found or scene not ready")
 
@@ -137,8 +152,72 @@ func apply_powerup(type: String, value: float):
 				print("Unknown powerup type:", type)
 		"mustard":
 			if not is_mustard_active:
-				null
-			
+				start_mustard_powerup(value)
+				print("Unknown powerup type:", type)
+func start_mustard_powerup(duration: float):
+	is_mustard_active = true
+	self.global_position.y += 4
+	gravity = 0
+	jump_force = 50
+	call_deferred("powerup_background", "mustard")
+	if gnome_shower.playing:
+		gnome_shower.stop()
+	else:
+		TLABAE.stop()
+	Wave.volume_db = -80
+	Wave.play(57.0)
+
+	var tween = create_tween()
+	tween.tween_property(Wave, "volume_db", 0, 0.5)  # fade in over 1 second
+	_end_mustard_powerup()
+	
+	# Disable collisions while in air
+	#set_collision_layer_value(1, false)
+	#set_collision_mask_value(1, false)
+	
+	#velocity = Vector2.ZERO
+	if velocity.y < 0:
+		velocity.y = -jump_force * 2  # little upward blast
+	
+	#mustard_timer = Timer.new()
+	#mustard_timer.wait_time = duration
+	#mustard_timer.one_shot = true
+	#mustard_timer.timeout.connect(_end_mustard_powerup)
+	#add_child(mustard_timer)
+	#mustard_timer.start()
+
+func _end_mustard_powerup():
+	# Disable collisions while in air
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	
+	if velocity.y > 0:
+		velocity.y = -jump_force * 0.5  # or just 0, or a little bounce
+
+	# Schedule a timer 
+	await get_tree().create_timer(5).timeout  # stay zero-g for 3 seconds
+	
+	set_collision_layer_value(1, true)
+	set_collision_mask_value(1, true)
+	
+	gravity = 20.0
+	jump_force = 600.0
+		# Stop mustard music
+	Wave.stop()
+	
+	is_mustard_active = false
+
+	
+	if music_randomizer == 1:
+		gnome_shower.play()
+	else:
+		TLABAE.play()
+		
+	call_deferred("powerup_background", "") # hide rain effects and reset background visibility
+
+func await_grounded():
+	while not is_on_floor():
+		await get_tree().process_frame
 
 func start_deepdish_powerup(duration: float):
 	is_deepdish_active = true
@@ -191,6 +270,8 @@ func start_hotdog_powerup(duration: float):
 		gnome_shower.stop()
 	else:
 		TLABAE.stop()
+		
+	#Beach.stream.loop = true #Looping sounded weird
 	Beach.play()
 
 	call_deferred("powerup_background", "hotdog")
@@ -214,7 +295,6 @@ func start_hotdog_powerup(duration: float):
 func _end_hotdog_powerup():
 	speed = normal_speed
 	is_hotdog_active = false
-
 	# Stop hotdog music
 	Beach.stop()
 	
