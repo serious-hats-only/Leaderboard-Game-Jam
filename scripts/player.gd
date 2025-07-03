@@ -195,7 +195,7 @@ func _end_mustard_powerup():
 		velocity.y = -jump_force * 0.5  # or just 0, or a little bounce
 
 	# Schedule a timer 
-	await get_tree().create_timer(5).timeout  # stay zero-g for 3 seconds
+	await get_tree().create_timer(7).timeout  # stay zero-g for 3 seconds
 	
 	set_collision_layer_value(1, true)
 	set_collision_mask_value(1, true)
