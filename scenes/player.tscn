@@ -114,7 +114,7 @@ region = Rect2(200, 0, 50, 100)
 [sub_resource type="SpriteFrames" id="SpriteFrames_a3i40"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_tuyoq")
 }, {
 "duration": 1.0,
@@ -157,16 +157,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_a8ls1")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_qfm1y")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_fulsm")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_4r5pv")
 }],
 "loop": true,
@@ -174,13 +174,13 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_60mlk")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_i4ail")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_a38lo")
 }],
 "loop": true,
@@ -188,16 +188,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_4ni07")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_l71n6")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ke2ow")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ujl30")
 }, {
 "duration": 1.0,
@@ -250,7 +250,8 @@ script = ExtResource("7_oprun")
 unique_name_in_owner = true
 scale = Vector2(1.6, 1.769)
 sprite_frames = SubResource("SpriteFrames_a3i40")
-animation = &"jump"
+animation = &"cannon"
+frame_progress = 0.702068
 
 [node name="DebugLine2D" type="Line2D" parent="."]
 visible = false

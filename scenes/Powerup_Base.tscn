@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://nrtcih5gxjlg" path="res://scenes/powerup_base.gd" id="1_g4vb5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4vb5"]
-size = Vector2(91, 103)
+size = Vector2(129.5, 103)
 
 [node name="PowerupBase" type="Area2D"]
 script = ExtResource("1_g4vb5")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0fn5670uiuvs"]
 
 [ext_resource type="PackedScene" uid="uid://nlwdswwbocdp" path="res://scenes/Powerup_Base.tscn" id="1_aecsu"]
-[ext_resource type="Texture2D" uid="uid://dpbcy8v5ebuu2" path="res://sprites/hotdog2.png" id="2_244qn"]
+[ext_resource type="Texture2D" uid="uid://dkttit18522si" path="res://sprites/CHIdog.png" id="2_aecsu"]
 
 [node name="PowerupBase" instance=ExtResource("1_aecsu")]
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_244qn")
+texture = ExtResource("2_aecsu")

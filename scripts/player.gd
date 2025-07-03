@@ -8,6 +8,10 @@ extends CharacterBody2D
 @export var normal_speed = 150.0
 var is_hotdog_active = false
 var hotdog_timer: Timer
+
+#Deep Dish Powerup 
+var is_deepdish_active = false 
+
 #var level = get_tree().current_scene
 #var background = level.get_node("Terrain/Background")
 
@@ -48,6 +52,7 @@ var music_randomizer = randi_range(1, 2)
 @onready var jump: AudioStreamPlayer2D = $Audio/Jump
 @onready var land: AudioStreamPlayer2D = $Audio/Land
 
+#Cannon sound?
 
 
 func _ready():
@@ -100,6 +105,15 @@ func apply_powerup(type: String, value: float):
 			if not is_hotdog_active:
 				start_hotdog_powerup(value)
 				print("Unknown powerup type:", type)
+		"deepdish":
+			if not is_deepdish_active:
+				start_hotdog_powerup(value)
+				print("Unknown powerup type:", type)
+			
+
+func start_deepdish_powerup(duration: float):
+	is_deepdish_active = true
+	sprite.play("cannon")
 
 func start_hotdog_powerup(duration: float):
 	is_hotdog_active = true
@@ -190,11 +204,24 @@ func move(delta):
 	if Global.player_can_move:
 		# Visuals
 		var horz_move = Input.get_axis("move_left", "move_right")
-		if horz_move != 0:
-			sprite.play("running")
-			sprite.flip_h = horz_move < 0
+		# Set animation based on movement state
+		if not is_on_floor():
+			if velocity.y < 0:
+				if sprite.animation != "jump":
+					sprite.play("jump")
+			elif velocity.y > 0:
+				if sprite.animation != "sink":
+					sprite.play("sink")
+		elif abs(velocity.x) > 5:
+			if sprite.animation != "running":
+				sprite.play("running")
 		else:
-			sprite.play("idle")
+			if sprite.animation != "idle":
+				sprite.play("idle")
+
+		# Flip sprite based on direction
+		if abs(velocity.x) > 5:
+			sprite.flip_h = velocity.x < 0
 		
 		# Movement
 		var move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -260,10 +287,13 @@ func move(delta):
 		if Input.is_action_just_pressed("move_up") and (is_on_floor() or stuck) and float(Global.speedrun_time) > 0.2:
 			velocity.y = -jump_force
 			jump.play()
+			if sprite.animation != "jump":
+				sprite.play("jump")
 		elif not is_on_floor() and can_jump:
 			if Input.is_action_just_pressed("move_up"):
 				velocity.y = -jump_force * 1.5
 				jump.play()
+				#sprite.play("idle")
 				can_jump = false
 
 			if is_on_floor(): #Dust when jumping

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhffpxgbfp1br"]
 
-[ext_resource type="Texture2D" uid="uid://dpbcy8v5ebuu2" path="res://sprites/hotdog2.png" id="1_6bj0o"]
+[ext_resource type="Texture2D" uid="uid://dkttit18522si" path="res://sprites/CHIdog.png" id="1_6bj0o"]
 [ext_resource type="Texture2D" uid="uid://cpdg5yj0458hw" path="res://sprites/brown_rat.png" id="2_6bj0o"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6bj0o"]

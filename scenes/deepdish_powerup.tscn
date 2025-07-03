@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://biqxmqhbxjtvk"]
+
+[ext_resource type="PackedScene" uid="uid://nlwdswwbocdp" path="res://scenes/Powerup_Base.tscn" id="1_b4hjc"]
+[ext_resource type="Script" uid="uid://c12wttwcr17nx" path="res://scenes/deepdish_powerup.gd" id="2_0doxt"]
+[ext_resource type="Texture2D" uid="uid://y6fedcu25ohr" path="res://sprites/deepdish.png" id="2_7es6c"]
+
+[node name="PowerupBase" instance=ExtResource("1_b4hjc")]
+script = ExtResource("2_0doxt")
+powerup_type = "deepdish"
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 0.598984
+texture = ExtResource("2_7es6c")
