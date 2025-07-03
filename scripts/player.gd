@@ -5,7 +5,7 @@ extends CharacterBody2D
 #@export var ui: UI
 
 #Hotdog powerup
-@export var normal_speed = 100.0
+@export var normal_speed = 150.0
 var is_hotdog_active = false
 var hotdog_timer: Timer
 #var level = get_tree().current_scene
