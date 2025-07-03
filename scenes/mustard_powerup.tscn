@@ -6,6 +6,11 @@
 
 [node name="PowerupBase" instance=ExtResource("1_hh8gy")]
 script = ExtResource("2_4nlcb")
+powerup_type = "mustard"
+duration = 5.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_c25tp")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0.5)
