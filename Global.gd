@@ -1,7 +1,10 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal score_submitted
+@warning_ignore("unused_signal")
 signal businessman_kicked
+@warning_ignore("unused_signal")
 signal time_minus
 
 var player_name: String
