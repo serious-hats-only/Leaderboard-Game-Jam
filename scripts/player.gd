@@ -58,15 +58,16 @@ func _ready():
 	
 func powerup_background():
 	var level = get_tree().current_scene
-	if level and level.has_node("Terrain/Background") and level.has_node("LeaderboardViewports/PixelRain"):
+	if level and level.has_node("Terrain/Background") and level.has_node("LeaderboardViewports/PixelRain") and level.has_node("SpaceTerrain/Spacetile"):
 		var background = level.get_node("Terrain/Background")
 		var pixelrain = level.get_node("LeaderboardViewports/PixelRain")
-
+		var spacebackground = level.get_node("SpaceTerrain/Spacetile")
 		# Toggle Background visibility
 		background.visible = not background.visible
 
 		# PixelRain is always the opposite of Background
 		pixelrain.visible = not background.visible
+		spacebackground.visible = not background.visible
 	else:
 		print("❌ Terrain/Background or PixelRain not found or scene not ready")
 
