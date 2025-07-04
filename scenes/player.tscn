@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://edbl28eg5wmq" path="res://audio/sfx/GGA_Land.wav" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://dyahtpfw2g4l5" path="res://sprites/gnome_sink.png" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://27m1l3qjqerj" path="res://audio/sfx/GGA_SpeedJam_Impact (3).wav" id="7_a8ls1"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="7_oprun"]
+[ext_resource type="Script" uid="uid://ch51u15jeycjq" path="res://scenes/camera_2d.gd" id="7_oprun"]
 [ext_resource type="AudioStream" uid="uid://bsxny0shg5gkw" path="res://audio/sfx/charge.wav" id="8_qfm1y"]
 [ext_resource type="AudioStream" uid="uid://c2mb8e5jtkkqs" path="res://audio/sfx/pickupCoin.wav" id="9_4r5pv"]
 [ext_resource type="AudioStream" uid="uid://jhtucq200501" path="res://audio/sfx/GGA_GnomeVoice_Big hop.mp3" id="10_i4ail"]
