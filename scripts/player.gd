@@ -14,6 +14,9 @@ const AFTERIMAGE_INTERVAL := 0.05
 var is_hotdog_active = false
 var hotdog_timer: Timer
 
+#Slipping animation
+var is_slipping = false
+
 #Deep Dish Powerup 
 var is_deepdish_active = false 
 var in_cannon_mode = false
@@ -29,7 +32,7 @@ var is_mustard_active = false
 var acceleration = 500
 var is_slippy = false
 var default_friction = 250
-var ice_friction = 25
+var ice_friction = 20
 var friction = 250
 var grounded = false
 var launched = false
@@ -67,8 +70,10 @@ var music_randomizer = randi_range(1, 2)
 @onready var coin: AudioStreamPlayer2D = $Audio/Coin
 @onready var doublejump: AudioStreamPlayer2D = $Audio/DoubleJump
 @onready var scared: AudioStreamPlayer2D = $Audio/Scared
+@onready var littlescared: AudioStreamPlayer2D = $Audio/LittleScared
 @onready var wow: AudioStreamPlayer2D = $Audio/Wow
 @onready var bigwow: AudioStreamPlayer2D = $Audio/BigWow
+@onready var slide: AudioStreamPlayer2D = $Audio/Slide
 
 func _ready():
 	if music_randomizer == 1:
@@ -370,7 +375,7 @@ func handle_groups(groups):
 			get_tree().current_scene.add_child(time_reduction_instance)
 			time_reduction_instance.global_position = self.global_position
 			var confetti_instance = confetti.instantiate()
-			Global.speedrun_time = (float(Global.speedrun_time) - 1.0)
+			Global.speedrun_time = (float(Global.speedrun_time) - 2.0)
 			Global.time_minus.emit()
 			print (Global.speedrun_time)
 			# Get the actual GPUParticles2D node
@@ -385,7 +390,14 @@ func handle_groups(groups):
 			confetti_instance.queue_free()
 		elif slippy_chars.find(g) >= 0:
 			is_slippy = true
-			
+			is_slipping = true
+			slide.play()
+			if sprite.animation != "slip":
+				sprite.play("slip")
+				littlescared.play()
+				await sprite.animation_finished
+				is_slipping = false
+				
 						
 
 func move(delta):
@@ -410,8 +422,11 @@ func move(delta):
 					if velocity.y > 20:
 						scared.play()
 		elif abs(velocity.x) > 5:
-			if sprite.animation != "running":
+			if sprite.animation != "running" and not is_slipping:
 				sprite.play("running")
+		elif abs(velocity.x) > 5 and is_slipping:
+			if sprite.animation != "slip":
+				sprite.play("slip")
 		else:
 			if sprite.animation != "idle":
 				sprite.play("idle")

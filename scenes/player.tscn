@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://08gvqyw16aqo"]
+[gd_scene load_steps=55 format=3 uid="uid://08gvqyw16aqo"]
 
 [ext_resource type="Script" uid="uid://die87sw6agnes" path="res://scripts/player.gd" id="1_bdmgi"]
 [ext_resource type="PackedScene" uid="uid://cpj8c0fxp5p3j" path="res://prefabs/time_reduction.tscn" id="2_f1ej7"]
@@ -20,9 +20,12 @@
 [ext_resource type="AudioStream" uid="uid://bbkxy1eklenwo" path="res://audio/music/MagicalGnomeShower.mp3" id="11_f1ej7"]
 [ext_resource type="AudioStream" uid="uid://b0loer04csn6p" path="res://audio/sfx/GGA_GnomeVoice_wooow.mp3" id="12_a38lo"]
 [ext_resource type="AudioStream" uid="uid://d2tuf2bi4r3ke" path="res://audio/music/TLABAE.mp3" id="12_oprun"]
+[ext_resource type="AudioStream" uid="uid://dxgrnsrh611qo" path="res://audio/sfx/GGA_GnomeVoice_Little pain.mp3" id="12_ujl30"]
 [ext_resource type="AudioStream" uid="uid://cci1yjxmwa00d" path="res://audio/sfx/GGA_GnomeVoice_WOOOOOW.mp3" id="13_4ni07"]
 [ext_resource type="AudioStream" uid="uid://bq7vxiky1p1rq" path="res://audio/music/Beach.mp3" id="13_a8ls1"]
+[ext_resource type="AudioStream" uid="uid://vfwu76ra2uyw" path="res://audio/sfx/slide.wav" id="14_l71n6"]
 [ext_resource type="AudioStream" uid="uid://bfsymji7e50j7" path="res://audio/music/wave.mp3" id="18_fulsm"]
+[ext_resource type="Texture2D" uid="uid://dvlvx3j8v41c3" path="res://sprites/slip.png" id="21_ke2ow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f16f4"]
 size = Vector2(57, 89)
@@ -119,6 +122,18 @@ region = Rect2(150, 0, 50, 100)
 atlas = ExtResource("6_tuyoq")
 region = Rect2(200, 0, 50, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("21_ke2ow")
+region = Rect2(0, 0, 50, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7fs"]
+atlas = ExtResource("21_ke2ow")
+region = Rect2(50, 0, 50, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("21_ke2ow")
+region = Rect2(100, 0, 50, 100)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_a3i40"]
 animations = [{
 "frames": [{
@@ -214,6 +229,20 @@ animations = [{
 "loop": true,
 "name": &"sink",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_pf23h")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_dt7fs")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_wqfne")
+}],
+"loop": true,
+"name": &"slip",
+"speed": 5.0
 }]
 
 [node name="player" type="CharacterBody2D" groups=["Player"]]
@@ -258,12 +287,20 @@ bus = &"SFX"
 stream = ExtResource("11_a38lo")
 bus = &"SFX"
 
+[node name="LittleScared" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_ujl30")
+bus = &"SFX"
+
 [node name="Wow" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("12_a38lo")
 bus = &"SFX"
 
 [node name="BigWow" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("13_4ni07")
+bus = &"SFX"
+
+[node name="Slide" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("14_l71n6")
 bus = &"SFX"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -286,9 +323,8 @@ script = ExtResource("7_oprun")
 unique_name_in_owner = true
 scale = Vector2(1.6, 1.769)
 sprite_frames = SubResource("SpriteFrames_a3i40")
-animation = &"cannon"
-frame = 9
-frame_progress = 1.0
+animation = &"sink"
+frame_progress = 0.947922
 
 [node name="DebugLine2D" type="Line2D" parent="."]
 visible = false
