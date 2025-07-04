@@ -44,8 +44,15 @@ func _ready() -> void:
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
 	var is_bad = sw_result.has("error_leaderboard_jam")
 	if (is_bad):
-		print("bad")
-	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
+		print("Going to offline mode...")
+		player_list_with_pos = []
+		for i in range(10):
+			var rand_score = (i+1)*100
+			rand_score += randf() * 99.0
+			rand_score = snappedf(rand_score, 0.1)
+			player_list_with_pos.append({"score": rand_score, "player_name": "ICG"})
+	else:
+		player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
 	var speed = 1
 	for i in viewport_labels.size():
 		#speed *= -1
