@@ -59,6 +59,10 @@ var music_randomizer = randi_range(1, 2)
 @onready var blast: AudioStreamPlayer2D = $Audio/Cannon_Blast
 @onready var charge: AudioStreamPlayer2D = $Audio/Charge
 @onready var coin: AudioStreamPlayer2D = $Audio/Coin
+@onready var doublejump: AudioStreamPlayer2D = $Audio/DoubleJump
+@onready var scared: AudioStreamPlayer2D = $Audio/Scared
+@onready var wow: AudioStreamPlayer2D = $Audio/Wow
+@onready var bigwow: AudioStreamPlayer2D = $Audio/BigWow
 
 func _ready():
 	if music_randomizer == 1:
@@ -164,6 +168,7 @@ func start_mustard_powerup(duration: float):
 		gnome_shower.stop()
 	else:
 		TLABAE.stop()
+	bigwow.play()
 	Wave.volume_db = -80
 	Wave.play(57.0)
 
@@ -233,6 +238,7 @@ func start_deepdish_powerup(duration: float):
 	else:
 		TLABAE.stop()
 	Wave.play()
+	bigwow.play()
 	# Wait for animation and launch cannon
 	await sprite.animation_finished
 	cannon_launch()
@@ -273,7 +279,7 @@ func start_hotdog_powerup(duration: float):
 		
 	#Beach.stream.loop = true #Looping sounded weird
 	Beach.play()
-
+	wow.play()
 	call_deferred("powerup_background", "hotdog")
 	
 	
@@ -361,9 +367,12 @@ func move(delta):
 			if velocity.y < 0:
 				if sprite.animation != "jump":
 					sprite.play("jump")
+					doublejump.play()
 			elif velocity.y > 0:
 				if sprite.animation != "sink":
 					sprite.play("sink")
+					if velocity.y > 20:
+						scared.play()
 		elif abs(velocity.x) > 5:
 			if sprite.animation != "running":
 				sprite.play("running")

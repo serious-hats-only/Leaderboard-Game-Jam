@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://08gvqyw16aqo"]
+[gd_scene load_steps=49 format=3 uid="uid://08gvqyw16aqo"]
 
 [ext_resource type="Script" uid="uid://die87sw6agnes" path="res://scripts/player.gd" id="1_bdmgi"]
 [ext_resource type="PackedScene" uid="uid://cpj8c0fxp5p3j" path="res://prefabs/time_reduction.tscn" id="2_f1ej7"]
@@ -12,11 +12,15 @@
 [ext_resource type="AudioStream" uid="uid://edbl28eg5wmq" path="res://audio/sfx/GGA_Land.wav" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://dyahtpfw2g4l5" path="res://sprites/gnome_sink.png" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://27m1l3qjqerj" path="res://audio/sfx/GGA_SpeedJam_Impact (3).wav" id="7_a8ls1"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="7_oprun"]
+[ext_resource type="Script" uid="uid://ch51u15jeycjq" path="res://scenes/camera_2d.gd" id="7_oprun"]
 [ext_resource type="AudioStream" uid="uid://bsxny0shg5gkw" path="res://audio/sfx/charge.wav" id="8_qfm1y"]
 [ext_resource type="AudioStream" uid="uid://c2mb8e5jtkkqs" path="res://audio/sfx/pickupCoin.wav" id="9_4r5pv"]
+[ext_resource type="AudioStream" uid="uid://jhtucq200501" path="res://audio/sfx/GGA_GnomeVoice_Big hop.mp3" id="10_i4ail"]
+[ext_resource type="AudioStream" uid="uid://b4pngtqump5q1" path="res://audio/sfx/GGA_GnomeVoice_Big pain.mp3" id="11_a38lo"]
 [ext_resource type="AudioStream" uid="uid://bbkxy1eklenwo" path="res://audio/music/MagicalGnomeShower.mp3" id="11_f1ej7"]
+[ext_resource type="AudioStream" uid="uid://b0loer04csn6p" path="res://audio/sfx/GGA_GnomeVoice_wooow.mp3" id="12_a38lo"]
 [ext_resource type="AudioStream" uid="uid://d2tuf2bi4r3ke" path="res://audio/music/TLABAE.mp3" id="12_oprun"]
+[ext_resource type="AudioStream" uid="uid://cci1yjxmwa00d" path="res://audio/sfx/GGA_GnomeVoice_WOOOOOW.mp3" id="13_4ni07"]
 [ext_resource type="AudioStream" uid="uid://bq7vxiky1p1rq" path="res://audio/music/Beach.mp3" id="13_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://bfsymji7e50j7" path="res://audio/music/wave.mp3" id="18_fulsm"]
 
@@ -244,6 +248,22 @@ bus = &"SFX"
 
 [node name="Coin" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("9_4r5pv")
+bus = &"SFX"
+
+[node name="DoubleJump" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("10_i4ail")
+bus = &"SFX"
+
+[node name="Scared" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_a38lo")
+bus = &"SFX"
+
+[node name="Wow" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_a38lo")
+bus = &"SFX"
+
+[node name="BigWow" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("13_4ni07")
 bus = &"SFX"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
