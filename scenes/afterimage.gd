@@ -1,5 +1,6 @@
 extends Sprite2D
 
+# line below was throwing errors, commenting out bc it doesn't appear to be needed
 #@onready var tween = $Tween
 
 func _ready():
