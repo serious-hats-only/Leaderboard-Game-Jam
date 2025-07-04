@@ -4,6 +4,10 @@ extends Node2D
 @export var sprites : Array[GeneratedTextSprite] = []
 var player_list_with_pos = []
 
+#var bouncy_chars = ['B', '0', 'D', '6', 'P', '8']
+#var breaky_chars = ['A', 'X', '9', 'K', 'G', '2', '5']  
+#var slippy_chars = ['C', 'I', '1', 'O', 'S']
+
 var char_colors = {
 	# Red platforms - bouncy
 	'0': 'red',
@@ -13,18 +17,24 @@ var char_colors = {
 	'P': 'red',
 	'8': 'red',
 	
+	'bouncy': 'red',
 	# Yellow platforms - breaky
 	'A': 'FFFF00',
 	'X': 'FFFF00',
 	'9': 'FFFF00',
 	'K': 'FFFF00',
+	'G': 'FFFF00',
+	'2': 'FFFF00',
+	'5': 'FFFF00',
 	
+	'breaky': 'FFFF00',
 	# Light blue platforms - slippy
 	'C': 'lightblue',
 	'I': 'lightblue',
 	'1': 'lightblue',
 	'O': 'lightblue',
 	'S': 'lightblue',
+	'slippy': 'lightblue',
 }
 
 func _ready() -> void:

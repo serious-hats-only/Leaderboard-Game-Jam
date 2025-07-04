@@ -140,7 +140,7 @@ func _physics_process(delta):
 		land.play()
 		
 var bouncy_chars = ['B', '0', 'D', '6', 'P', '8']
-var breaky_chars = ['A', 'X', '9', 'K']  
+var breaky_chars = ['A', 'X', '9', 'K', 'G', '2', '5']  
 var slippy_chars = ['C', 'I', '1', 'O', 'S']
 
 #Power-Up Function
@@ -319,9 +319,7 @@ func _end_hotdog_powerup():
 		
 func handle_groups(groups):
 	for g in groups:
-		if g == 'G':
-			print("G")
-		elif bouncy_chars.find(g) >= 0:
+		if bouncy_chars.find(g) >= 0:
 			bounce.play()
 			#velocity.y = -2*jump_force
 			launched = true
