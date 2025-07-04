@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var tween = $Tween
+#@onready var tween = $Tween
 
 func _ready():
 	modulate.a = 0.6  # Start semi-transparent
