@@ -152,6 +152,9 @@ func _on_GetScores_request_completed(result, response_code, headers, body) -> vo
 		else:
 			SWLogger.error("SilentWolf get scores failure: " + str(json_body.error))
 		sw_get_scores_complete.emit(sw_result)
+	else:
+		var sw_result: Dictionary = {"error_leaderboard_jam": "error"}
+		sw_get_scores_complete.emit(sw_result)
 
 
 func get_scores_by_player(player_name: String, maximum: int=10, ldboard_name: String="main", period_offset: int=0) -> Node:

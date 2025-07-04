@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bbg3kk8sn8ls6" path="res://sprites/beach_init.png" id="2_flqon"]
 [ext_resource type="Texture2D" uid="uid://dogwh5fqgwq8y" path="res://sprites/ICG_Logo.png" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://c53vmfsb0jfpe" path="res://sprites/tv_console_size.png" id="5_rcqid"]
-[ext_resource type="Shader" uid="uid://cfsg5rkxw4qb3" path="res://scripts/main_menu_tv.gdshader" id="7_1ajci"]
+[ext_resource type="Shader" path="res://scripts/main_menu_tv.gdshader" id="7_1ajci"]
 [ext_resource type="Texture2D" uid="uid://bmmyl2olbt261" path="res://sprites/lizardKICK_BASE.png" id="7_lgwnu"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="7_tbmy8"]
 [ext_resource type="Script" uid="uid://c6q4efmitay36" path="res://scripts/grid_container.gd" id="8_jk1qb"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bo6068t05rp0y" path="res://sprites/lizard_arm.png" id="10_flqon"]
 [ext_resource type="PackedScene" uid="uid://4lmvq4et0ufm" path="res://prefabs/foot.tscn" id="11_flqon"]
 [ext_resource type="Texture2D" uid="uid://c1r10jxupbrr7" path="res://sprites/businessman.png" id="12_rcqid"]
-[ext_resource type="Script" uid="uid://bwfjwb5164g7s" path="res://scripts/trail_line.gd" id="13_rcqid"]
+[ext_resource type="Script" path="res://scripts/trail_line.gd" id="13_rcqid"]
 [ext_resource type="Texture2D" uid="uid://ba8y6gjibow6x" path="res://sprites/businessman_idle.png" id="15_7b55j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]

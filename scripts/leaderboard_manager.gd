@@ -4,6 +4,8 @@ extends Node2D
 @export var sprites : Array[GeneratedTextSprite] = []
 var player_list_with_pos = []
 
+const SWUtils = preload("res://addons/silent_wolf/utils/SWUtils.gd")
+
 #var bouncy_chars = ['B', '0', 'D', '6', 'P', '8']
 #var breaky_chars = ['A', 'X', '9', 'K', 'G', '2', '5']  
 #var slippy_chars = ['C', 'I', '1', 'O', 'S']
@@ -40,6 +42,9 @@ var char_colors = {
 func _ready() -> void:
 	# when scene loads, 
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
+	var is_bad = sw_result.has("error_leaderboard_jam")
+	if (is_bad):
+		print("bad")
 	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
 	var speed = 1
 	for i in viewport_labels.size():
