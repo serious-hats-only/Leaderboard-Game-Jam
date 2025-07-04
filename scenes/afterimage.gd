@@ -1,6 +1,7 @@
 extends Sprite2D
 
-@onready var tween = $Tween
+# line below was throwing errors, commenting out bc it doesn't appear to be needed
+#@onready var tween = $Tween
 
 func _ready():
 	modulate.a = 0.6  # Start semi-transparent
