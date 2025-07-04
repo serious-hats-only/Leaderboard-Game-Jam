@@ -8,8 +8,13 @@ var run_is_complete = false
 
 @onready var player: Player = $player
 @onready var get_player_name: Control = $Control/GetPlayerName
+@onready var high_score: Sprite2D = $Control/HighScore
 @onready var powerup_base: Area2D = $PowerupBase
+@onready var high_score_slam: AudioStreamPlayer = $Control/AudioStreamPlayer
+@onready var high_score_animation_player: AnimationPlayer = $Control/HighScoreAnimationPlayer
 
+
+var top_10_score = []
 
 func _ready():
 	Global.score_submitted.connect(score_submitted_restart)
@@ -35,6 +40,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var complete_run_instantiated = complete_run.instantiate()
 		get_node("Control").add_child(complete_run_instantiated)
 		run_is_complete = true
+		
+		var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
+		var top_10_score = SilentWolf.Scores.scores[(SilentWolf.Scores.scores).size() - 10]["score"]
+		if float(Global.speedrun_time_end) < top_10_score:
+			high_score_animation_player.play("high_score_slam")
+			
 
 func score_submitted_restart():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

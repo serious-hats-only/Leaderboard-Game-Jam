@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bitmbgk1ydg72"]
+[gd_scene load_steps=3 format=3 uid="uid://bitmbgk1ydg72"]
 
 [ext_resource type="Script" uid="uid://byfka63qpyjvj" path="res://scripts/credits.gd" id="1_0bpdh"]
+[ext_resource type="Texture2D" uid="uid://ygxp203m5ke3" path="res://sprites/credits.png" id="2_2ckv8"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -11,14 +12,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0bpdh")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.650128, 0.650128, 0.650128, 1)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_2ckv8")
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 1
@@ -42,20 +40,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -137.0
-offset_top = -68.0
-offset_right = 138.0
-offset_bottom = 115.0
+offset_left = -187.0
+offset_top = -123.0
+offset_right = 187.0
+offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0.667919, 0.0924657, 0, 1)
+theme_override_colors/default_color = Color(0.701961, 0.701961, 0.701961, 1)
 bbcode_enabled = true
 text = "[u]Credits[/u]
 
-Design: TBD
-Code: TBD
-Art: TBD
-Audio: TBD"
+Gabe (GNull): Code, Design
+Mike Gillis: Code, Design
+Griffin Guge: Music, SFX, Design
+Dave Kornfeld: Code, Design
+Dave McQuary: Art, Music, Design"
 horizontal_alignment = 1
 vertical_alignment = 1
 
