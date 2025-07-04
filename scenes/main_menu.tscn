@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://c4ghdkqa6k2nq"]
+[gd_scene load_steps=38 format=3 uid="uid://c4ghdkqa6k2nq"]
 
 [ext_resource type="Script" uid="uid://dyrww50nsrmyd" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="Texture2D" uid="uid://bbg3kk8sn8ls6" path="res://sprites/beach_init.png" id="2_flqon"]
+[ext_resource type="Texture2D" uid="uid://bfnphmakoiw74" path="res://sprites/beach_animated.png" id="2_5pajh"]
 [ext_resource type="Texture2D" uid="uid://dogwh5fqgwq8y" path="res://sprites/ICG_Logo.png" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://c53vmfsb0jfpe" path="res://sprites/tv_console_size.png" id="5_rcqid"]
 [ext_resource type="Shader" uid="uid://cfsg5rkxw4qb3" path="res://scripts/main_menu_tv.gdshader" id="7_1ajci"]
@@ -15,6 +15,35 @@
 [ext_resource type="Texture2D" uid="uid://c1r10jxupbrr7" path="res://sprites/businessman.png" id="12_rcqid"]
 [ext_resource type="Script" uid="uid://bwfjwb5164g7s" path="res://scripts/trail_line.gd" id="13_rcqid"]
 [ext_resource type="Texture2D" uid="uid://ba8y6gjibow6x" path="res://sprites/businessman_idle.png" id="15_7b55j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8gd2"]
+atlas = ExtResource("2_5pajh")
+region = Rect2(0, 0, 1152, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hstxw"]
+atlas = ExtResource("2_5pajh")
+region = Rect2(1152, 0, 1152, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8egab"]
+atlas = ExtResource("2_5pajh")
+region = Rect2(2304, 0, 1152, 648)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gw5y6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8gd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hstxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8egab")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -243,7 +272,12 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_flqon")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/BG"]
+position = Vector2(574, 323)
+sprite_frames = SubResource("SpriteFrames_gw5y6")
+autoplay = "default"
+frame_progress = 0.485584
 
 [node name="Credits" type="Button" parent="Control"]
 visible = false
