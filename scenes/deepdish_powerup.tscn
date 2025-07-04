@@ -7,6 +7,7 @@
 [node name="PowerupBase" instance=ExtResource("1_b4hjc")]
 script = ExtResource("2_0doxt")
 powerup_type = "deepdish"
+duration = 15.0
 
 [node name="Sprite2D" parent="." index="0"]
 rotation = 0.598984
