@@ -424,7 +424,7 @@ func move(delta):
 		elif abs(velocity.x) > 5:
 			if sprite.animation != "running" and not is_slipping:
 				sprite.play("running")
-		elif abs(velocity.x) > 5 and is_slipping:
+		elif is_slipping:
 			if sprite.animation != "slip":
 				sprite.play("slip")
 		else:
