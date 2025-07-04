@@ -452,6 +452,12 @@ func move(delta):
 				var instance = dust.instantiate()
 				instance.global_position = $Marker2D.global_position
 				get_parent().add_child(instance)
+	if global_position.x < 0:
+		global_position.x = 1100
+		velocity.x = -jump_force
+	if global_position.x > 1150:
+		global_position.x = 0
+		velocity.x = jump_force
 	
 func apply_friction(amount):
 	if abs(velocity.x) > amount:
