@@ -277,7 +277,7 @@ offset_bottom = 40.0
 position = Vector2(574, 323)
 sprite_frames = SubResource("SpriteFrames_gw5y6")
 autoplay = "default"
-frame_progress = 0.485584
+frame_progress = 0.696226
 
 [node name="Credits" type="Button" parent="Control"]
 visible = false

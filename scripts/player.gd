@@ -1,6 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+var AfterImage = preload("res://scenes/Afterimage.tscn")
+var afterimage_timer := 0.0
+const AFTERIMAGE_INTERVAL := 0.05
+
+
 @onready var sprite = $AnimatedSprite2D
 #@export var ui: UI
 
@@ -12,6 +17,7 @@ var hotdog_timer: Timer
 #Deep Dish Powerup 
 var is_deepdish_active = false 
 var in_cannon_mode = false
+var shooting_mode = false
 
 #Mustard Powerup
 var is_mustard_active = false 
@@ -77,8 +83,9 @@ func powerup_background(rain_type: String = ""):
 		var pixelrain = level.get_node("LeaderboardViewports/PixelRain")
 		var spacebackground = level.get_node("Terrain/Space")
 		# Toggle Background visibility
-		background.visible = not background.visible
-		spacebackground.visible = not background.visible
+		if spacebackground.visible == false: 
+			background.visible = not background.visible
+			spacebackground.visible = not background.visible
 		
 		# Show PixelRain opposite to background
 		pixelrain.visible = not background.visible
@@ -132,6 +139,25 @@ func _physics_process(delta):
 	
 	var was_grounded = isgrounded
 	isgrounded = is_on_floor()
+	
+	if is_hotdog_active: #Afterimage enable if you get a hot dog
+		afterimage_timer -= delta
+		if afterimage_timer <= 0:
+			spawn_afterimage()
+			afterimage_timer = AFTERIMAGE_INTERVAL
+	
+	if is_mustard_active: #Afterimage enable if you get a hot dog
+		afterimage_timer -= delta
+		if afterimage_timer <= 0:
+			spawn_afterimage()
+			afterimage_timer = AFTERIMAGE_INTERVAL
+			
+	if shooting_mode: #Afterimage enable if you get a hot dog
+		afterimage_timer -= delta
+		if afterimage_timer <= 0:
+			spawn_afterimage()
+			afterimage_timer = AFTERIMAGE_INTERVAL
+			
 
 	if first_frame_passed and not was_grounded and isgrounded and float(Global.speedrun_time) > 0.2:
 		var instance = dust.instantiate()
@@ -158,6 +184,17 @@ func apply_powerup(type: String, value: float):
 			if not is_mustard_active:
 				start_mustard_powerup(value)
 				print("Unknown powerup type:", type)
+				
+func spawn_afterimage():
+	var img = AfterImage.instantiate()
+	img.global_position = global_position
+	img.scale = scale
+	img.rotation = rotation
+	img.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture(
+		$AnimatedSprite2D.animation,
+		$AnimatedSprite2D.frame
+	)
+	get_parent().add_child(img)
 func start_mustard_powerup(duration: float):
 	is_mustard_active = true
 	self.global_position.y += 4
@@ -247,12 +284,14 @@ func cannon_launch():
 	velocity.y = -jump_force * 10  # big upward blast
 	blast.play()
 	in_cannon_mode = false
+	shooting_mode = true
 	Global.player_can_move = true  # Reenable controls
 	$Camera2D.start_shake(10.0)  # Adjust intensity
 	
 	# Disable collisions while in air
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
+	shooting_mode = false
 	Global.player_can_move = true
 	Wave.stop()
 	if music_randomizer == 1:

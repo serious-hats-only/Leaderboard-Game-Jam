@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg0mu5ya75amg"]
+
+[ext_resource type="Script" uid="uid://5hoaes1qoym8" path="res://scenes/afterimage.gd" id="1_rna6s"]
+
+[node name="AnimatedSprite2D" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.196078)
+script = ExtResource("1_rna6s")
