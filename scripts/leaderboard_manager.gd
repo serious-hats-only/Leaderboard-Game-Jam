@@ -38,7 +38,7 @@ func _ready() -> void:
 			break
 		var score = player_list_with_pos[i]["score"]
 		var name = player_list_with_pos[i]["player_name"]
-		var str = str(i) + ". " + name.to_upper() + " " + str(score)
+		var str = str(i+1) + ". " + name.to_upper() + " " + str(score)
 		var strNoPeriod = str.replace('.', '')
 		strNoPeriod = strNoPeriod.replace(' ', '')
 		var strRaw = str
