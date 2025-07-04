@@ -397,6 +397,9 @@ func handle_groups(groups):
 				littlescared.play()
 				await sprite.animation_finished
 				is_slipping = false
+		else:
+			is_slippy = false
+			is_slipping = false
 				
 						
 
