@@ -83,13 +83,12 @@ func powerup_background(rain_type: String = ""):
 		var pixelrain = level.get_node("LeaderboardViewports/PixelRain")
 		var spacebackground = level.get_node("Terrain/Space")
 		# Toggle Background visibility
-		if spacebackground.visible == false: 
-			background.visible = not background.visible
-			spacebackground.visible = not background.visible
 		
-		# Show PixelRain opposite to background
-		pixelrain.visible = not background.visible
-		
+		var show_powerup = rain_type.length() > 0
+		background.visible = not show_powerup
+		spacebackground.visible = show_powerup
+		pixelrain.visible = show_powerup
+
 		# Toggle specific rain inside PixelRain:
 		var hotdog_rain = pixelrain.get_node("HotDogRain")
 		var pizza_rain = pixelrain.get_node("PizzaRain")
