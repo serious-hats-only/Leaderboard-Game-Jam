@@ -12,7 +12,9 @@ var run_is_complete = false
 @onready var powerup_base: Area2D = $PowerupBase
 @onready var high_score_slam: AudioStreamPlayer = $Control/AudioStreamPlayer
 @onready var high_score_animation_player: AnimationPlayer = $Control/HighScoreAnimationPlayer
-
+@onready var fireworks: AudioStreamPlayer = $Control/Fireworks
+@export var Firework1Scene: PackedScene
+@export var Firework2Scene: PackedScene
 
 var top_10_score = []
 
@@ -45,6 +47,25 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var top_10_score = SilentWolf.Scores.scores[(SilentWolf.Scores.scores).size() - 10]["score"]
 		if float(Global.speedrun_time_end) < top_10_score:
 			high_score_animation_player.play("high_score_slam")
+			await get_tree().create_timer(0.5).timeout
+			fireworks.play()
+			var fw1 = Firework1Scene.instantiate()
+			fw1.global_position = %FireworkMarker2D.global_position
+			fw1.scale *= 2 
+			add_child(fw1)
+
+			await get_tree().create_timer(0.5).timeout
+
+			var fw2 = Firework2Scene.instantiate()
+			fw2.global_position = %FireworkMarker2D_2.global_position
+			fw2.scale *= 2 
+			add_child(fw2)
+			
+			var fw3 = Firework2Scene.instantiate()
+			fw3.global_position = %FireworkMarker2D_3.global_position
+			fw3.scale *= 3
+			add_child(fw3)
+			
 			
 
 func score_submitted_restart():

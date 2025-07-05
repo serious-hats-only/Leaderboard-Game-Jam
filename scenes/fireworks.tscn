@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://bmvv6sqwbrsov"]
+
+[ext_resource type="Texture2D" uid="uid://ddfr7bsthu3nk" path="res://sprites/firework_gold.png" id="1_q76is"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvf0l"]
+atlas = ExtResource("1_q76is")
+region = Rect2(0, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvmay"]
+atlas = ExtResource("1_q76is")
+region = Rect2(100, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyf3s"]
+atlas = ExtResource("1_q76is")
+region = Rect2(200, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1a15"]
+atlas = ExtResource("1_q76is")
+region = Rect2(300, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfsm8"]
+atlas = ExtResource("1_q76is")
+region = Rect2(400, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_603td"]
+atlas = ExtResource("1_q76is")
+region = Rect2(500, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rjln"]
+atlas = ExtResource("1_q76is")
+region = Rect2(600, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mky4y"]
+atlas = ExtResource("1_q76is")
+region = Rect2(700, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cw2r"]
+atlas = ExtResource("1_q76is")
+region = Rect2(800, 0, 100, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11csi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvf0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvmay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyf3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1a15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfsm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_603td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rjln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mky4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cw2r")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fireworks1" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_11csi")
+autoplay = "default"
+frame = 8
+frame_progress = 1.0

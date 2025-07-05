@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp3abdnlgo1w7"]
+
+[ext_resource type="Script" uid="uid://b8xjy46em820a" path="res://scenes/fireworks_1.gd" id="1_4oqle"]
+[ext_resource type="PackedScene" uid="uid://bmvv6sqwbrsov" path="res://scenes/fireworks.tscn" id="1_qefyo"]
+
+[node name="Fireworks 1" type="Node2D"]
+script = ExtResource("1_4oqle")
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("1_qefyo")]

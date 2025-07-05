@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://2ag0awjxgtoq"]
+[gd_scene load_steps=10 format=3 uid="uid://2ag0awjxgtoq"]
 
 [ext_resource type="AudioStream" uid="uid://dsq6cv704ru5k" path="res://audio/sfx/confetti_pop.mp3" id="1_632ci"]
 [ext_resource type="Script" uid="uid://cmiy1deo24hin" path="res://scripts/complete_run_test.gd" id="1_sk125"]
 [ext_resource type="AudioStream" uid="uid://der4err17i6eg" path="res://audio/sfx/party_horn.mp3" id="2_sk125"]
 [ext_resource type="PackedScene" uid="uid://cro58yaedfu1" path="res://scenes/confetti.tscn" id="2_x5yvn"]
+[ext_resource type="AudioStream" uid="uid://3i1qfd40mnq8" path="res://audio/sfx/fireworks2.wav" id="5_vk7ao"]
 [ext_resource type="FontFile" uid="uid://dv6vfhhf7h5tf" path="res://emulogic.ttf" id="6_vk7ao"]
 
 [sub_resource type="Animation" id="Animation_t6t8d"]
@@ -55,6 +56,10 @@ bus = &"SFX"
 
 [node name="party_horn" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_sk125")
+bus = &"SFX"
+
+[node name="fireworks" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vk7ao")
 bus = &"SFX"
 
 [node name="Control" type="Control" parent="."]

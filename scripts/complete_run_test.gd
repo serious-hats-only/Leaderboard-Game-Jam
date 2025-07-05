@@ -4,6 +4,8 @@ extends Node2D
 
 @onready var confetti_pop: AudioStreamPlayer2D = $confetti_pop
 @onready var party_horn: AudioStreamPlayer2D = $party_horn
+#@onready var fireworks: AudioStreamPlayer2D = $party_horn
+
 @onready var nice_climb: Control = $Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
