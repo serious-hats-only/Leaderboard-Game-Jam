@@ -2,6 +2,8 @@ extends Node2D
 
 @export var viewport_labels : Array[RichTextLabel] = []
 @export var sprites : Array[GeneratedTextSprite] = []
+@export var load_texture : TextureRect = null
+@export var player : Player = null
 var player_list_with_pos = []
 
 const SWUtils = preload("res://addons/silent_wolf/utils/SWUtils.gd")
@@ -53,6 +55,9 @@ func _ready() -> void:
 			player_list_with_pos.append({"score": rand_score, "player_name": "ICG"})
 	else:
 		player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
+	load_texture.visible = false
+	Global.player_can_move = true
+	Global.display_speedrun_timer = true
 	var speed = 1
 	for i in viewport_labels.size():
 		#speed *= -1
