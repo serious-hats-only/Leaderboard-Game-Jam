@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bitmbgk1ydg72"]
+[gd_scene load_steps=4 format=3 uid="uid://bitmbgk1ydg72"]
 
 [ext_resource type="Script" uid="uid://byfka63qpyjvj" path="res://scripts/credits.gd" id="1_0bpdh"]
 [ext_resource type="Texture2D" uid="uid://ygxp203m5ke3" path="res://sprites/credits.png" id="2_2ckv8"]
+[ext_resource type="AudioStream" uid="uid://dr2eq5o7xe3x4" path="res://audio/music/Eating Sand.mp3" id="3_0ctdu"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -41,13 +42,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
-offset_top = -141.0
-offset_right = 187.0
-offset_bottom = 105.0
+offset_left = -185.0
+offset_top = -131.0
+offset_right = 189.0
+offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "[u]Credits[/u]
 
@@ -67,9 +69,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = 192.0
-offset_right = 195.0
+offset_left = -260.0
+offset_top = 167.0
+offset_right = 96.0
 offset_bottom = 314.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -81,7 +83,13 @@ text = "[u]Assets[/u]
 Level Texture: Kenney.nl
 High Score GFX: Freepik.com, @Bohlam_neon
 High Score SFX: @chripei (Freesound)
-Party Horn SFX: @TiesWijnen (Freesound)"
-horizontal_alignment = 1
+Party Horn SFX: @TiesWijnen (Freesound)
+\"Redo Wave\" Sample: Beach Disco by Dougie Wood"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0ctdu")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="Back" to="." method="_on_button_pressed"]

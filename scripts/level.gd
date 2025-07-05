@@ -8,7 +8,7 @@ var run_is_complete = false
 
 @onready var player: Player = $player
 @onready var get_player_name: Control = $Control/GetPlayerName
-@onready var high_score: Sprite2D = $Control/HighScore
+@onready var high_score: AnimatedSprite2D = $Control/NewHighScore
 @onready var powerup_base: Area2D = $PowerupBase
 @onready var high_score_slam: AudioStreamPlayer = $Control/AudioStreamPlayer
 @onready var high_score_animation_player: AnimationPlayer = $Control/HighScoreAnimationPlayer
