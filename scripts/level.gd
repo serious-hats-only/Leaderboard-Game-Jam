@@ -16,6 +16,10 @@ var run_is_complete = false
 @export var Firework1Scene: PackedScene
 @export var Firework2Scene: PackedScene
 
+#Load these so it doesn't hitch as much?
+@onready var spacebackground = $Terrain/Space
+@onready var pixelrain = $LeaderboardViewports/PixelRain
+
 var top_10_score = []
 
 func _ready():

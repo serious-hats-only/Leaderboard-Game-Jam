@@ -28,6 +28,8 @@ var is_mustard_active = false
 #var level = get_tree().current_scene
 #var background = level.get_node("Terrain/Background")
 
+
+
 @export var speed = normal_speed
 var acceleration = 500
 var is_slippy = false
@@ -74,6 +76,7 @@ var music_randomizer = randi_range(1, 2)
 @onready var wow: AudioStreamPlayer2D = $Audio/Wow
 @onready var bigwow: AudioStreamPlayer2D = $Audio/BigWow
 @onready var slide: AudioStreamPlayer2D = $Audio/Slide
+
 
 func _ready():
 	if music_randomizer == 1:
