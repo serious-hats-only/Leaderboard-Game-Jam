@@ -139,6 +139,19 @@ func _physics_process(delta):
 		isgrounded = is_on_floor()
 		return # Skip movement and effects this frame
 
+	var space_state = get_world_2d().direct_space_state
+	for i in range(58):
+		i -= 29
+		var query = PhysicsRayQueryParameters2D.create(position + Vector2(i, 0), position + Vector2(i, 70))
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if result:
+			var c = result["collider"]
+			var groups = c.get_groups()
+			var g = groups[0]
+			if slippy_chars.find(g) >= 0:
+				is_slipping = true
+				is_slippy = true
 	move(delta)
 	
 	var was_grounded = isgrounded
@@ -409,7 +422,7 @@ func move(delta):
 		velocity.x = 0  # prevent drift
 		move_and_slide()
 		return
-		
+
 	if Global.player_can_move:
 		# Visuals
 		var horz_move = Input.get_axis("move_left", "move_right")
@@ -451,20 +464,6 @@ func move(delta):
 		move_and_slide()
 		just_launched = false
 		
-		#we also raycast as fallback when it doesn't detect
-		#the collider because of resolution ordering
-		#(i'm guessing that's why)
-		#var space_state = get_world_2d().direct_space_state
-		#var query = PhysicsRayQueryParameters2D.create(position, position + Vector2(0, 70))
-		#query.exclude = [self]
-		#var result = space_state.intersect_ray(query)
-		#if result:
-		#	var c = result["collider"]
-		#	var groups = c.get_groups()
-		#	handle_groups(groups)
-		#	if just_launched:
-		#		velocity.y = -2*jump_force
-
 		is_slippy = false
 		var collisions = get_slide_collision_count()
 		for i in range(collisions):
