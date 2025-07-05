@@ -63,6 +63,20 @@ var music_randomizer = randi_range(1, 2)
 @export var time_reduction: PackedScene
 
 # audio references
+@onready var bounce_mp3 = preload("res://audio/sfx/GGA_BugBounce.mp3")
+@onready var broke_mp3 = preload("res://audio/sfx/GGA_BubblePop.wav")
+@onready var jump_mp3 = preload("res://audio/sfx/GGA_Jump.wav")
+@onready var land_mp3 = preload("res://audio/sfx/GGA_Land.wav")
+@onready var blast_mp3 = preload("res://audio/sfx/GGA_SpeedJam_Impact (3).wav")
+@onready var charge_mp3 = preload("res://audio/sfx/charge.wav")
+@onready var coin_mp3 = preload("res://audio/sfx/pickupCoin.wav")
+@onready var doublejump_mp3 = preload("res://audio/sfx/GGA_GnomeVoice_Big hop.mp3")
+@onready var scared_mp3 = preload("res://audio/sfx/GGA_GnomeVoice_Big pain.mp3")
+@onready var littlescared_mp3 = preload("res://audio/sfx/GGA_GnomeVoice_Little pain.mp3")
+@onready var wow_mp3 = preload("res://audio/sfx/GGA_GnomeVoice_wooow.mp3")
+@onready var bigwow_mp3 = preload("res://audio/sfx/GGA_GnomeVoice_WOOOOOW.mp3")
+@onready var slide_mp3 = preload("res://audio/sfx/slide.wav")
+
 @onready var bounce: AudioStreamPlayer2D = $Audio/Bounce
 @onready var broke: AudioStreamPlayer2D = $Audio/Broke
 @onready var jump: AudioStreamPlayer2D = $Audio/Jump
