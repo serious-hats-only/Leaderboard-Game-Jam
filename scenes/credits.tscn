@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byfka63qpyjvj" path="res://scripts/credits.gd" id="1_0bpdh"]
 [ext_resource type="Texture2D" uid="uid://ygxp203m5ke3" path="res://sprites/credits.png" id="2_2ckv8"]
-[ext_resource type="AudioStream" uid="uid://dr2eq5o7xe3x4" path="res://audio/music/Eating Sand.mp3" id="3_0ctdu"]
+[ext_resource type="AudioStream" uid="uid://bfsymji7e50j7" path="res://audio/music/wave.mp3" id="3_0ctdu"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -83,7 +83,7 @@ text = "[u]Assets[/u]
 Level Texture: Kenney.nl
 High Score SFX: @chripei (Freesound)
 Party Horn SFX: @TiesWijnen (Freesound)
-\"Redo Wave\" Sample: Beach Disco by Dougie Wood"
+Power-Up Sample: Beach Disco by Dougie Wood"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0ctdu")
