@@ -153,6 +153,8 @@ func _sfx_done():
 	load_text.visible = false
 	Global.player_can_move = true
 	Global.display_speedrun_timer = true
+	player.Wave.stop()
+	player.charge.finished.disconnect(_sfx_done)
 	
 	player.bounce.volume_linear = original_bounce_volume
 	player.broke.volume_linear = original_broke_volume
@@ -183,7 +185,6 @@ func _sfx_done():
 	player.slide.pitch_scale = original_slide_pitch
 	player.Wave.volume_linear = original_wave_volume
 	player.Wave.pitch_scale = original_wave_pitch
-	player.Wave.stop()
 	
 	player.powerup_background("")
 
