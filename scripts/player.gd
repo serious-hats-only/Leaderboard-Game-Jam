@@ -59,8 +59,8 @@ var isgrounded = false
 @onready var gnome_shower: AudioStreamPlayer2D = $Music/Gnome_Shower
 var music_randomizer = randi_range(1, 2)
 
-@export var confetti = preload("res://scenes/confetti.tscn")
-@export var time_reduction: PackedScene
+@onready var confetti = preload("res://scenes/confetti.tscn")
+@onready var time_reduction: PackedScene = preload("res://prefabs/time_reduction.tscn")
 
 # audio references
 @onready var bounce_mp3 = preload("res://audio/sfx/GGA_BugBounce.mp3")

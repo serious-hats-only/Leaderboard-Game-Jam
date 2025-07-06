@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://bx7wx874ytign"]
+[gd_scene load_steps=51 format=4 uid="uid://bx7wx874ytign"]
 
 [ext_resource type="Script" uid="uid://nhw8rakcvkm3" path="res://scripts/level.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://2ag0awjxgtoq" path="res://scenes/complete_run_test.tscn" id="2_olg7q"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://biqxmqhbxjtvk" path="res://scenes/deepdish_powerup.tscn" id="17_ux5qa"]
 [ext_resource type="PackedScene" uid="uid://bc7jtv0nl14h8" path="res://scenes/mustard_powerup.tscn" id="18_82cfe"]
 [ext_resource type="Texture2D" uid="uid://s58foykhfvj4" path="res://sprites/godot1.png" id="26_xy2fk"]
+[ext_resource type="PackedScene" uid="uid://cro58yaedfu1" path="res://scenes/confetti.tscn" id="27_cmcjb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpun6"]
 texture = ExtResource("12_64w2a")
@@ -707,12 +708,11 @@ Firework2Scene = ExtResource("13_3ies3")
 [node name="Terrain" type="Node" parent="."]
 
 [node name="Space" type="TextureRect" parent="Terrain"]
-visible = false
 z_index = -1
 offset_left = 17.0
-offset_top = -2233.0
+offset_top = -2235.0
 offset_right = 1136.0
-offset_bottom = 631.0
+offset_bottom = 629.0
 texture = ExtResource("3_arp2o")
 stretch_mode = 1
 
@@ -836,7 +836,7 @@ shape = SubResource("RectangleShape2D_8iemx")
 [node name="player" parent="." instance=ExtResource("4_2r41h")]
 position = Vector2(1058, 382)
 
-[node name="LeaderboardManager" type="Node2D" parent="." node_paths=PackedStringArray("viewport_labels", "sprites", "load_texture", "load_bg", "load_text")]
+[node name="LeaderboardManager" type="Node2D" parent="." node_paths=PackedStringArray("viewport_labels", "sprites", "load_texture", "load_bg", "load_text", "player")]
 position = Vector2(539, 325)
 script = ExtResource("5_klq6b")
 viewport_labels = [NodePath("../LeaderboardViewports/1/Control/RichTextLabel"), NodePath("../LeaderboardViewports/2/Control/RichTextLabel"), NodePath("../LeaderboardViewports/3/Control/RichTextLabel"), NodePath("../LeaderboardViewports/4/Control/RichTextLabel"), NodePath("../LeaderboardViewports/5/Control/RichTextLabel"), NodePath("../LeaderboardViewports/6/Control/RichTextLabel"), NodePath("../LeaderboardViewports/7/Control/RichTextLabel"), NodePath("../LeaderboardViewports/8/Control/RichTextLabel"), NodePath("../LeaderboardViewports/9/Control/RichTextLabel"), NodePath("../LeaderboardViewports/10/Control/RichTextLabel")]
@@ -844,6 +844,7 @@ sprites = [NodePath("../LeaderboardSprites/1"), NodePath("../LeaderboardSprites/
 load_texture = NodePath("../Loading/TextureRect")
 load_bg = NodePath("../Loading/ColorRect")
 load_text = NodePath("../Loading/Label")
+player = NodePath("../player")
 
 [node name="DebugSeeder" type="Node2D" parent="."]
 position = Vector2(0, -1)
@@ -1325,7 +1326,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PixelRain" parent="LeaderboardViewports" instance=ExtResource("3_ux5qa")]
-visible = false
 top_level = true
 z_index = 4
 position = Vector2(16, -2226)
@@ -1377,5 +1377,8 @@ text = "Loading...
 label_settings = SubResource("LabelSettings_xy2fk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Confetti" parent="." instance=ExtResource("27_cmcjb")]
+position = Vector2(1401, -1637)
 
 [connection signal="body_entered" from="World Boundaries/FinishLine/RunCompleteTest" to="." method="_on_area_2d_body_entered"]
