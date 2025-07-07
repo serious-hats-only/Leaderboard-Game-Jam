@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="leaderboard_game_jam"
+config/name="A Magic Lizard Kicked Me Into A TV And Now I'm A Gnome Who Has To Climb A Leaderboard"
 run/main_scene="uid://c4ghdkqa6k2nq"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dr8v453j2d6ol"
 
 [audio]
 
